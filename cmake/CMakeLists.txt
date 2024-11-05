@@ -27,17 +27,12 @@ file(GLOB_RECURSE cpp_source_files "../cpp_source/*.cpp")
 file(GLOB_RECURSE cpp_header_files "../cpp_headers/*.hpp" "../cpp_headers/*.h")
 include_directories("../cpp_headers")
 include_directories("../resources")
-include_directories("../submodules")
-file(GLOB_RECURSE submodules_cpp_source_files "../submodules/*.cpp")
-file(GLOB_RECURSE submodules_cpp_header_files "../submodules/*.hpp")
 set(resource_file "../resources/jujubee.rc")
 
 add_executable(${PROJECT_NAME} WIN32 
                 ${cpp_source_files} 
                 ${cpp_header_files} 
-                ${resource_file} 
-                ${submodules_cpp_source_files} 
-                ${submodules_cpp_header_files}
+                ${resource_file}
 )
 
 
