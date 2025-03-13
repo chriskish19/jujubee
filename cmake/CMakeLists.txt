@@ -40,10 +40,11 @@ endif()
 
 
 add_definitions(-DUNICODE -D_UNICODE)
-file(GLOB_RECURSE cpp_source_files "../projects/main_project_exe_jujubee/*.cpp")
+file(GLOB_RECURSE cpp_source_files "../projects/main_project_jujubee/*.cpp")
+file(GLOB_RECURSE cpp_header_files "../projects/main_project_jujubee/*.hpp")
 include_directories("../projects")
 
-add_executable(${jujubee} ${cpp_source_files})
+add_executable(${jujubee} ${cpp_source_files} ${cpp_header_files})
 
 # Link required Win32 libraries
 target_link_libraries(${jujubee} PUBLIC
