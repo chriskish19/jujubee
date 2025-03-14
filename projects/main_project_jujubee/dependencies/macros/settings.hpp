@@ -12,10 +12,12 @@ Purpose: Manage macro settings thorughout jujubee
 
 // read only string, prepends L"string literal"
 #define ROS(x) L##x
-#else
 
+#define USING_WSTR 1
+#else
 
 #define COUT std::cout
 #define ROS(x) x
+#define USING_STR 1
 #endif
 

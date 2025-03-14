@@ -85,10 +85,11 @@ classes::codes classes::starter::create_window()
         return codes::hwnd_fail;
     }
 
-    if (FALSE == ShowWindow(m_window_handle, SW_SHOW)) {
+    
+    if (ShowWindow(m_window_handle, SW_SHOW) > 0) {
         return codes::show_window_fail;
     }
-
+    
     return codes::success;
 }
 
@@ -103,4 +104,82 @@ classes::codes classes::starter::message_pump()
     }
 
     return codes::success;
+}
+
+classes::window::window()
+{
+    {
+        codes code;
+        code = window_settings();
+        output_code(code);
+    }
+
+    {
+        codes code;
+        code = create_window();
+        output_code(code);
+    }
+
+    {
+        codes code;
+        code = add_menu(m_window_handle);
+        output_code(code);
+    }
+
+    {
+        codes code;
+        code = message_pump();
+        output_code(code);
+    }
+}
+
+LRESULT classes::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    switch (uMsg) {
+        case WM_COMMAND:
+        {
+            int wmId = LOWORD(wParam);  // Extract the menu item ID
+            switch (wmId) {
+                case static_cast<int>(window_ids::console):
+                {
+                    break;
+                }
+                default:
+                    break;
+            } // end of switch (wmId)
+            break;
+        }
+    } // end of switch (uMsg)
+
+    // no default switch needed
+    return starter::ThisWindowProc(hwnd, uMsg, wParam, lParam);
+}
+
+classes::codes classes::window::add_menu(HWND window_handle)
+{
+    HMENU hMenu = CreateMenu();
+    if (hMenu == nullptr) {
+        return codes::menu_fail;
+    }
+
+    HMENU hFileMenu = CreatePopupMenu();
+    if (hFileMenu == nullptr) {
+        return codes::menu_fail;
+    }
+
+    HMENU hHelpMenu = CreatePopupMenu();
+    if (hHelpMenu == nullptr) {
+        return codes::menu_fail;
+    }
+
+    AppendMenu(hFileMenu, MF_STRING, static_cast<UINT_PTR>(window_ids::open), L"&Open");
+    AppendMenu(hFileMenu, MF_SEPARATOR, 0, nullptr);
+    AppendMenu(hFileMenu, MF_STRING, static_cast<UINT_PTR>(window_ids::exit), L"E&xit");
+
+    AppendMenu(hHelpMenu, MF_STRING, static_cast<UINT_PTR>(window_ids::help), L"&About");
+
+    AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hFileMenu, L"&File");
+    AppendMenu(hMenu, MF_POPUP, (UINT_PTR)hHelpMenu, L"&Help");
+
+    SetMenu(window_handle, hMenu);
 }

@@ -10,6 +10,7 @@ Purpose: basic window creation in win32
 // dependencies
 #include "main_project_jujubee\dependencies\include_dependencies.hpp"
 #include "main_project_jujubee\classes\error\error.hpp"
+#include "main_project_jujubee\classes\utilities\api.hpp"
 
 namespace classes {
 	// abstract class
@@ -47,14 +48,20 @@ namespace classes {
 	};
 
 	class window :starter{
-		window() {
-			
-			{
-				codes code;
-				code = window_settings();
-			}
-			create_window();
-			message_pump();
-		}
+	public:
+		window();
+
+	protected:
+		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
+
+		codes add_menu(HWND window_handle);
+
+		enum class window_ids {
+			console,
+			file,
+			open,
+			exit,
+			help
+		};
 	};
 }

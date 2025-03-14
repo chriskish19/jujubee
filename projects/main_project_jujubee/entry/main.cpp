@@ -6,8 +6,11 @@ int WINAPI wWinMain(
     _In_ LPWSTR lpCmdLine,
     _In_ int nShowCmd
 ) {
-    classes::starter window;
-    window
+    classes::window* main_window = new classes::window;
+
+    if (main_window != nullptr) {
+        delete main_window;
+    }
 }
 
 int main() {
