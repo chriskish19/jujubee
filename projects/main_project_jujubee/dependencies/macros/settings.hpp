@@ -1,12 +1,11 @@
-#include NAMES_INCLUDE
- 
-/*
-
-File: settings.hpp
-Purpose: Manage macro settings thorughout jujubee
-
-*/
-
+/***********************************************
+* File: settings.hpp
+*
+* Purpose: Manage macro settings thorughout jujubee
+*
+*
+*
+************************************************/
 
 #define MAX_STRING 512
 

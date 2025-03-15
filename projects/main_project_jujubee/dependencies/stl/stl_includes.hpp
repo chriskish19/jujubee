@@ -1,7 +1,13 @@
-#include NAMES_INCLUDE
-#define NAMES_INCLUDE
-#pragma once
+/***********************************************
+* File: stl_includes.hpp
+*
+* Purpose: includes all standard library headers
+*
+*
+*
+************************************************/
 
+#pragma once
 
 #if defined(CPP_14)
 // CPP 14 Support and below

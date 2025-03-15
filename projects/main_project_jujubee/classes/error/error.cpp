@@ -1,4 +1,7 @@
-#include "error.hpp"
+#include NAMES_INCLUDE
+#include ERROR_INCLUDE_PATH
+
+
 
 void classes::jujubee_error::vs_output_full_message()
 {

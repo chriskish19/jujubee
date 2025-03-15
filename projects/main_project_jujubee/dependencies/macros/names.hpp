@@ -1,20 +1,24 @@
-/*
+/***********************************************
+* File: names.hpp
+*
+* Purpose: makes for easy file name changes
+*
+*
+*
+************************************************/
 
-Purpose: Manage file name changes here
-
-*/
-
-#define STL_INCLUDE								stl_macro_hpp
-#define SETTINGS_INCLUDE						settings_hpp
-#define TYPES_INCLUDE							types_hpp
-#define WINDOWS_INCLUDE							windows_includes_hpp
-#define DEPENDENCIES_INCLUDE					include_dependencies_hpp
-#define TEST_UTILITIES_INCLUDE					test_utilities_hpp
-#define UTILITIES_INCLUDE						utilities_hpp
-#define CODES_INCLUDE							codes_hpp
-#define ERROR_INCLUDE							error_hpp
-#define FILELOGGER_INCLUDE						file_logger_hpp
-#define LOGS_INCLUDE							logs_hpp
-#define WINDOWLOGGER_INCLUDE					window_logger_hpp
-#define BASIC_INCLUDE							basic_hpp
-#define PCH_INCLUDE								pch_hpp
+#define STL_PRIVATE_INCLUDE_PATH				stl_includes_hpp
+#define STL_INCLUDE_PATH						stl_hpp
+#define SETTINGS_INCLUDE_PATH					settings_hpp
+#define TYPES_INCLUDE_PATH						types_hpp
+#define WINDOWS_INCLUDE_PATH					windows_includes_hpp
+#define DEPENDENCIES_INCLUDE_PATH				include_dependencies_hpp
+#define TEST_UTILITIES_INCLUDE_PATH				test_utilities_hpp
+#define UTILITIES_INCLUDE_PATH					utilities_hpp
+#define CODES_INCLUDE_PATH						codes_hpp
+#define ERROR_INCLUDE_PATH						error_hpp
+#define FILELOGGER_INCLUDE_PATH					file_logger_hpp
+#define LOGS_INCLUDE_PATH						logs_hpp
+#define WINDOWLOGGER_INCLUDE_PATH				window_logger_hpp
+#define BASIC_INCLUDE_PATH						basic_hpp
+#define PCH_INCLUDE_PATH						pch_hpp

@@ -1,1 +1,2 @@
-#include "stl_includes.hpp"
+#include NAMES_INCLUDE
+#include STL_PRIVATE_INCLUDE_PATH

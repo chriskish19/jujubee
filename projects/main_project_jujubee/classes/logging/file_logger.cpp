@@ -1,1 +1,3 @@
-#include "file_logger.hpp"
+#include NAMES_INCLUDE
+#include FILELOGGER_INCLUDE_PATH
+

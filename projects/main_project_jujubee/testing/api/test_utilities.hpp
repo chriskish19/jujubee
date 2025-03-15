@@ -1,14 +1,14 @@
-#include NAMES_INCLUDE
- 
-/*
-
-File:	 test_utilities.hpp
-
-Purpose: run tests on code written for jujubee
-
-*/
+/***********************************************
+* File: test_utilities.hpp
+*
+* Purpose: test jujubee's code base
+*
+*
+*
+************************************************/
 
 #pragma once
+#include NAMES_INCLUDE
 
 namespace test {
 

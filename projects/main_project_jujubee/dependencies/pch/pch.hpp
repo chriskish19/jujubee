@@ -1,18 +1,20 @@
+#ifndef PCH_HPP_GUARD
+#define PCH_HPP_GUARD
+
 #include NAMES_INCLUDE
- 
-#pragma once
 
-// macros
-#include settings_hpp
-#include types_hpp
+#include STL_INCLUDE_PATH
+#include SETTINGS_INCLUDE_PATH		
+#include TYPES_INCLUDE_PATH			
+#include WINDOWS_INCLUDE_PATH		
+#include TEST_UTILITIES_INCLUDE_PATH
+#include UTILITIES_INCLUDE_PATH	
+#include CODES_INCLUDE_PATH		
+#include ERROR_INCLUDE_PATH	
+#include FILELOGGER_INCLUDE_PATH		
+#include LOGS_INCLUDE_PATH			
+#include WINDOWLOGGER_INCLUDE_PATH	
+#include BASIC_INCLUDE_PATH	
 
-// stl
-#include stl_macro_hpp
-
-// windows api
-#include windows_includes_hpp
-
-// classes
-#include error_hpp
-#include basic_hpp
+#endif
 

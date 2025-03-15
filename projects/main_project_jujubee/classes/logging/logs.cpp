@@ -1,1 +1,3 @@
-#include "logs.hpp"
+#include NAMES_INCLUDE
+#include LOGS_INCLUDE_PATH
+

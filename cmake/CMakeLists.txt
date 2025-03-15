@@ -1,3 +1,7 @@
+#######################################
+# CMake lists file for jujubee project
+#######################################
+
 
 cmake_minimum_required(VERSION 3.18)
 

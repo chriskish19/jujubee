@@ -1,20 +1,16 @@
+/***********************************************
+* File: types.hpp
+*
+* Purpose: Manage types throughout jujubee.
+*
+*
+*
+************************************************/
+
+#pragma once
 #include NAMES_INCLUDE
- 
-/*
-
-Purpose: Manage types throughout jujubee.
-
-*/
-
-// names
-#include NAMES_INCLUDE
-
-// stl
-#include STL_INCLUDE
-
-// windows
-#include WINDOWS_INCLUDE
-
+#include STL_INCLUDE_PATH
+#include WINDOWS_INCLUDE_PATH
 
 
 #if defined(UNICODE) || defined(_UNICODE)

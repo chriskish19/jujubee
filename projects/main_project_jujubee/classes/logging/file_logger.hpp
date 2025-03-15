@@ -1,17 +1,15 @@
-#include NAMES_INCLUDE
- 
-/*
-
-File:	 file_logger.hpp
-
-Purpose: write system logs to a log file 
-
-*/
+/***********************************************
+* File: file_logger.hpp
+*
+* Purpose: save system logs to a file
+*
+*
+*
+************************************************/
 
 #pragma once
-
-// dependencies
-#include include_dependencies_hpp
+#include NAMES_INCLUDE
+#include DEPENDENCIES_INCLUDE_PATH
 
 namespace classes {
 	class file_logger {

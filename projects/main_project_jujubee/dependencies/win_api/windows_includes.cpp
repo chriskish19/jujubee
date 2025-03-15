@@ -1,1 +1,2 @@
-#include "windows_includes.hpp"
+#include NAMES_INCLUDE
+#include WINDOWS_INCLUDE_PATH

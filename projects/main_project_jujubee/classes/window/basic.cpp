@@ -1,4 +1,5 @@
-#include "basic.hpp"
+#include NAMES_INCLUDE
+#include BASIC_INCLUDE_PATH
 
 classes::starter::starter(const string& class_name)
 {

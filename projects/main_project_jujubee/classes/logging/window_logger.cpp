@@ -1,1 +1,3 @@
-#include "window_logger.hpp"
+#include NAMES_INCLUDE
+#include WINDOWLOGGER_INCLUDE_PATH
+

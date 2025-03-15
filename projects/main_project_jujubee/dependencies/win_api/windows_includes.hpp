@@ -1,5 +1,12 @@
-#include NAMES_INCLUDE
-#define NAMES_INCLUDE
+/***********************************************
+* File: windows_includes.hpp
+*
+* Purpose: include windows headers
+*
+*
+*
+************************************************/
+
 #pragma once
 
 // main windows header

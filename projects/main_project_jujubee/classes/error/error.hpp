@@ -1,21 +1,17 @@
-#include NAMES_INCLUDE
-
-/*
-
-File:		error.hpp
-
-Purpose:	error handling for jujubee
-
-Info:		this should only be dependant on codes.hpp and can be used throughout jujubee 
-			to handle errors
-
-*/
+/***********************************************
+* File:	error.hpp
+* 
+* Purpose: error handling for jujubee
+* 
+* Info:	this should only be dependant on codes.hpp and can be used throughout jujubee 
+*		to handle errors
+* 
+************************************************/
 
 #pragma once
-
-// dependencies
-#include include_dependencies_hpp
-#include codes_hpp
+#include NAMES_INCLUDE
+#include DEPENDENCIES_INCLUDE_PATH
+#include CODES_INCLUDE_PATH
 
 namespace classes {
 	string get_location(std::source_location sl = std::source_location::current());

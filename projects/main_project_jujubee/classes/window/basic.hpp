@@ -1,17 +1,17 @@
-#include NAMES_INCLUDE
- 
-/*
-
-File: basic.hpp
-Purpose: basic window creation in win32
-
-*/
+/***********************************************
+* File: basic.hpp
+*
+* Purpose: basic win32 window creation
+*
+*
+*
+************************************************/
 
 #pragma once
-
-// dependencies
-#include include_dependencies_hpp
-#include error_hpp
+#include NAMES_INCLUDE
+#include DEPENDENCIES_INCLUDE_PATH
+#include CODES_INCLUDE_PATH
+#include ERROR_INCLUDE_PATH
 
 namespace classes {
 	// abstract class

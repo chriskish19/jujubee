@@ -1,17 +1,14 @@
+/***********************************************
+* File: codes.hpp
+* 
+* Purpose: defines all codes (error codes and messages)
+*
+************************************************/
+
 #pragma once
 #include NAMES_INCLUDE
-
-/*
-
-Purpose: enum error codes for use in jujubee
-
-*/
-
-#include TYPES_INCLUDE
-
-
-
-
+#include TYPES_INCLUDE_PATH
+#include SETTINGS_INCLUDE_PATH
 
 
 namespace classes {
