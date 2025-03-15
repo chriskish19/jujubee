@@ -1,3 +1,5 @@
+#include NAMES_INCLUDE
+#define NAMES_INCLUDE
 #pragma once
 
 

@@ -1,9 +1,12 @@
+#include NAMES_INCLUDE
+ 
 /*
 
 File: settings.hpp
 Purpose: Manage macro settings thorughout jujubee
 
 */
+
 
 #define MAX_STRING 512
 
@@ -14,10 +17,20 @@ Purpose: Manage macro settings thorughout jujubee
 #define ROS(x) L##x
 
 #define USING_WSTR 1
-#else
+
+
+#else // ANSI
 
 #define COUT std::cout
 #define ROS(x) x
 #define USING_STR 1
 #endif
+
+#ifdef TEST // compiler definition macro
+
+#define ENTRY_TEST
+
+#endif
+
+
 

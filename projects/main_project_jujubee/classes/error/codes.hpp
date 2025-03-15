@@ -1,14 +1,21 @@
+#pragma once
+#include NAMES_INCLUDE
+
 /*
 
-File: codes.hpp
 Purpose: enum error codes for use in jujubee
 
 */
 
-#pragma once
+#include TYPES_INCLUDE
+
+
+
+
+
 
 namespace classes {
-	enum class codes {
+	enum class juju_codes {
 		success = 0,
 		unintialized,
 		null_pointer,
@@ -42,25 +49,25 @@ namespace classes {
 
 	class code_description {
 	public:
-		code_description(codes code, string description)
+		code_description(juju_codes code, string description)
 			:m_code(code),m_description(description) { }
 
-		const codes m_code;
+		const juju_codes m_code;
 		const string m_description;
 	};
 
-	inline const code_description success_code						(codes::success, success_description);
-	inline const code_description uninitialized_code				(codes::unintialized, uninitialized_description);
-	inline const code_description null_pointer_code					(codes::null_pointer, null_pointer_description);
-	inline const code_description window_problem_code				(codes::window_problem, window_problem_description);
-	inline const code_description exception_thrown_code				(codes::exception_thrown, exception_thrown_description);
-	inline const code_description empty_file_code					(codes::empty_file, empty_file_description);
-	inline const code_description string_length_too_long_code		(codes::string_length_too_long, string_length_too_long_description);
-	inline const code_description to_wide_string_failed_code		(codes::to_wide_string_failed, to_wide_string_failed_description);
-	inline const code_description to_narrow_string_failed_code		(codes::to_narrow_string_failed, to_narrow_string_failed_description);
-	inline const code_description class_already_registered_code		(codes::class_already_registered, class_already_registered_description);
-	inline const code_description failed_to_register_class_code		(codes::failed_to_register_class, failed_to_register_class_description);
-	inline const code_description hwnd_fail_code					(codes::hwnd_fail, hwnd_fail_description);
-	inline const code_description show_window_fail_code				(codes::show_window_fail, show_window_fail_description);
-	inline const code_description menu_fail_code					(codes::menu_fail, menu_fail_description);
+	inline const code_description success_code						(juju_codes::success, success_description);
+	inline const code_description uninitialized_code				(juju_codes::unintialized, uninitialized_description);
+	inline const code_description null_pointer_code					(juju_codes::null_pointer, null_pointer_description);
+	inline const code_description window_problem_code				(juju_codes::window_problem, window_problem_description);
+	inline const code_description exception_thrown_code				(juju_codes::exception_thrown, exception_thrown_description);
+	inline const code_description empty_file_code					(juju_codes::empty_file, empty_file_description);
+	inline const code_description string_length_too_long_code		(juju_codes::string_length_too_long, string_length_too_long_description);
+	inline const code_description to_wide_string_failed_code		(juju_codes::to_wide_string_failed, to_wide_string_failed_description);
+	inline const code_description to_narrow_string_failed_code		(juju_codes::to_narrow_string_failed, to_narrow_string_failed_description);
+	inline const code_description class_already_registered_code		(juju_codes::class_already_registered, class_already_registered_description);
+	inline const code_description failed_to_register_class_code		(juju_codes::failed_to_register_class, failed_to_register_class_description);
+	inline const code_description hwnd_fail_code					(juju_codes::hwnd_fail, hwnd_fail_description);
+	inline const code_description show_window_fail_code				(juju_codes::show_window_fail, show_window_fail_description);
+	inline const code_description menu_fail_code					(juju_codes::menu_fail, menu_fail_description);
 }

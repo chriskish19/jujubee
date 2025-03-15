@@ -1,17 +1,18 @@
+#include NAMES_INCLUDE
+ 
 #pragma once
 
 // macros
-#include "main_project_jujubee/dependencies/macros/settings.hpp"
-#include "main_project_jujubee/dependencies/macros/types.hpp"
+#include settings_hpp
+#include types_hpp
 
 // stl
-#include "main_project_jujubee/dependencies/stl/stl_macro.hpp"
+#include stl_macro_hpp
 
 // windows api
-#include "main_project_jujubee/dependencies/win_api/windows_includes.hpp"
+#include windows_includes_hpp
 
 // classes
-#include "main_project_jujubee\classes\error\error.hpp"
-#include "main_project_jujubee\classes\utilities\api.hpp"
-#include "main_project_jujubee\classes\window\basic.hpp"
+#include error_hpp
+#include basic_hpp
 

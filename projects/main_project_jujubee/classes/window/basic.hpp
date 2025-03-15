@@ -1,3 +1,5 @@
+#include NAMES_INCLUDE
+ 
 /*
 
 File: basic.hpp
@@ -8,9 +10,8 @@ Purpose: basic window creation in win32
 #pragma once
 
 // dependencies
-#include "main_project_jujubee\dependencies\include_dependencies.hpp"
-#include "main_project_jujubee\classes\error\error.hpp"
-#include "main_project_jujubee\classes\utilities\api.hpp"
+#include include_dependencies_hpp
+#include error_hpp
 
 namespace classes {
 	// abstract class
@@ -19,9 +20,9 @@ namespace classes {
 		foundation() = default;
 	protected:
 		virtual LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
-		virtual codes window_settings() = 0;
-		virtual codes create_window() = 0;
-		virtual codes message_pump() = 0;
+		virtual juju_codes window_settings() = 0;
+		virtual juju_codes create_window() = 0;
+		virtual juju_codes message_pump() = 0;
 
 		HWND m_window_handle = nullptr;
 		HINSTANCE m_hinst = GetModuleHandle(NULL);
@@ -39,9 +40,9 @@ namespace classes {
 	protected:
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 
-		codes window_settings() override;
-		codes create_window() override;
-		codes message_pump() override;
+		juju_codes window_settings() override;
+		juju_codes create_window() override;
+		juju_codes message_pump() override;
 
 		// return value from registering windows class
 		inline static std::atomic<ATOM> m_class_atm = 0;
@@ -54,7 +55,7 @@ namespace classes {
 	protected:
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 
-		codes add_menu(HWND window_handle);
+		juju_codes add_menu(HWND window_handle);
 
 		enum class window_ids {
 			console,

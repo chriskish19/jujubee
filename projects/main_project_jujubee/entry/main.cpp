@@ -1,5 +1,7 @@
 #include "main_project_jujubee/dependencies/pch/pch.hpp"
 
+#ifndef ENTRY_TEST
+
 int WINAPI wWinMain(
     _In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
@@ -11,7 +13,25 @@ int WINAPI wWinMain(
     if (main_window != nullptr) {
         delete main_window;
     }
+
+    return static_cast<int>(classes::juju_codes::success);
 }
+
+
+
+#else // USE TEST ENTRY POINT
+
+int WINAPI wWinMain(
+    _In_ HINSTANCE hInstance,
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR lpCmdLine,
+    _In_ int nShowCmd
+) {
+    // Run tests here
+
+    return static_cast<int>(classes::juju_codes::success);
+}
+
 
 int main() {
     // Prepare arguments for wWinMain
@@ -23,3 +43,5 @@ int main() {
     // Call wWinMain
     return wWinMain(hInstance, hPrevInstance, lpCmdLine, nShowCmd);
 }
+
+#endif

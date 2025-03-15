@@ -25,14 +25,14 @@ classes::string classes::get_location(std::source_location sl)
 #endif
 
 #if USING_WSTR
-    codes code;
+    juju_codes code;
     string wide_str = to_wide_string(temp, &code);
     output_code(code);
     return wide_str;
 #endif
 }
 
-std::wstring classes::to_wide_string(const char* narrow, codes* code_p)
+std::wstring classes::to_wide_string(const char* narrow, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -76,7 +76,7 @@ std::wstring classes::to_wide_string(const char* narrow, codes* code_p)
 
     // if length is greater than max_string_buffer, we allocate memory:
     if (length > max_string_buffer) {
-        *code_p = codes::string_length_too_long;
+        *code_p = juju_codes::string_length_too_long;
 
         buffer = new wchar_t[length];
 
@@ -97,7 +97,7 @@ std::wstring classes::to_wide_string(const char* narrow, codes* code_p)
     // On conversion error (if invalid wide character was encountered), 
     // returns static_cast<std::size_t>(-1), stores EILSEQ in errno, and leaves *ps in unspecified state. 
     if (error_code == std::size_t(-1)) {
-        *code_p = codes::to_wide_string_failed;
+        *code_p = juju_codes::to_wide_string_failed;
 
         if (heap_alloc and buffer != nullptr) {
             delete[] buffer;
@@ -113,13 +113,13 @@ std::wstring classes::to_wide_string(const char* narrow, codes* code_p)
         delete[] buffer;
     }
 
-    *code_p = codes::success;
+    *code_p = juju_codes::success;
 
     // return the wide string using the buffer
     return temp_buffer;
 }
 
-std::wstring classes::to_wide_string(const std::string& narrow, codes* code_p)
+std::wstring classes::to_wide_string(const std::string& narrow, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -165,7 +165,7 @@ std::wstring classes::to_wide_string(const std::string& narrow, codes* code_p)
 
     // if length is greater than max_string_buffer, allocate more memory.
     if (length > max_string_buffer) {
-        *code_p = codes::string_length_too_long;
+        *code_p = juju_codes::string_length_too_long;
 
         buffer = new wchar_t[length];
 
@@ -186,7 +186,7 @@ std::wstring classes::to_wide_string(const std::string& narrow, codes* code_p)
     // On conversion error (if invalid wide character was encountered), 
     // returns static_cast<std::size_t>(-1), stores EILSEQ in errno, and leaves *ps in unspecified state. 
     if (error_code == std::size_t(-1)) {
-        *code_p = codes::to_wide_string_failed;
+        *code_p = juju_codes::to_wide_string_failed;
 
         if (heap_alloc and buffer != nullptr) {
             delete[] buffer;
@@ -202,14 +202,14 @@ std::wstring classes::to_wide_string(const std::string& narrow, codes* code_p)
         delete[] buffer;
     }
 
-    *code_p = codes::success;
+    *code_p = juju_codes::success;
 
 
     // return the wide string using the buffer
     return temp_buffer;
 }
 
-std::string classes::to_narrow_string(const wchar_t* wide, codes* code_p)
+std::string classes::to_narrow_string(const wchar_t* wide, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -252,7 +252,7 @@ std::string classes::to_narrow_string(const wchar_t* wide, codes* code_p)
     // if length is greater than max_string_buffer, we have an error:
     // use new to allocate memory to compensate 
     if (length > max_string_buffer) {
-        *code_p = codes::string_length_too_long;
+        *code_p = juju_codes::string_length_too_long;
 
         buffer = new char[length];
 
@@ -277,7 +277,7 @@ std::string classes::to_narrow_string(const wchar_t* wide, codes* code_p)
     // On conversion error (if invalid wide character was encountered), 
     // returns static_cast<std::size_t>(-1), stores EILSEQ in errno, and leaves *ps in unspecified state. 
     if (error_code == std::size_t(-1)) {
-        *code_p = codes::to_narrow_string_failed;
+        *code_p = juju_codes::to_narrow_string_failed;
 
         if (heap_alloc and buffer != nullptr) {
             delete[] buffer;
@@ -294,13 +294,13 @@ std::string classes::to_narrow_string(const wchar_t* wide, codes* code_p)
     }
 
 
-    *code_p = codes::success;
+    *code_p = juju_codes::success;
 
     // return the narrow string using the buffer
     return temp_buffer_str;
 }
 
-std::string classes::to_narrow_string(const std::wstring& wide, codes* code_p)
+std::string classes::to_narrow_string(const std::wstring& wide, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -345,7 +345,7 @@ std::string classes::to_narrow_string(const std::wstring& wide, codes* code_p)
     // if length is greater than max_string_buffer, we have an error:
     // use new to allocate memory to compensate 
     if (length > max_string_buffer) {
-        *code_p = codes::string_length_too_long;
+        *code_p = juju_codes::string_length_too_long;
 
         buffer = new char[length];
 
@@ -370,7 +370,7 @@ std::string classes::to_narrow_string(const std::wstring& wide, codes* code_p)
     // On conversion error (if invalid wide character was encountered), 
     // returns static_cast<std::size_t>(-1), stores EILSEQ in errno, and leaves *ps in unspecified state. 
     if (error_code == std::size_t(-1)) {
-        *code_p = codes::to_narrow_string_failed;
+        *code_p = juju_codes::to_narrow_string_failed;
 
         if (heap_alloc and buffer != nullptr) {
             delete[] buffer;
@@ -387,91 +387,91 @@ std::string classes::to_narrow_string(const std::wstring& wide, codes* code_p)
     }
 
 
-    *code_p = codes::success;
+    *code_p = juju_codes::success;
 
     // return the narrow string using the buffer
     return temp_buffer_str;
 }
 
-void classes::output_code(codes code)
+void classes::output_code(juju_codes code)
 {
 
     switch (code) {
-    case codes::success:
+    case juju_codes::success:
     {
         return;
     }
 
 
 
-    case codes::null_pointer:
+    case juju_codes::null_pointer:
     {
         output_window(ROS("pointer is null pointer"));
         break;
     }
 
-    case codes::window_problem:
+    case juju_codes::window_problem:
     {
         output_window(ROS("problem with win32 window"));
         break;
     }
 
-    case codes::exception_thrown:
+    case juju_codes::exception_thrown:
     {
         output_window(ROS("exception was thrown"));
         break;
     }
 
-    case codes::empty_file:
+    case juju_codes::empty_file:
     {
         output_window(ROS("file is empty"));
         break;
     }
 
-    case codes::string_length_too_long:
+    case juju_codes::string_length_too_long:
     {
         output_window(ROS("string is too long"));
         break;
     }
 
-    case codes::to_wide_string_failed:
+    case juju_codes::to_wide_string_failed:
     {
         output_window(ROS("wide string conversion failed"));
         break;
     }
 
 
-    case codes::to_narrow_string_failed:
+    case juju_codes::to_narrow_string_failed:
     {
         output_window(ROS("narrow string conversion failed"));
         break;
     }
 
-    case codes::class_already_registered:
+    case juju_codes::class_already_registered:
     {
         output_window(ROS("window class has been registered already"));
         break;
     }
 
-    case codes::failed_to_register_class:
+    case juju_codes::failed_to_register_class:
     {
         output_window(ROS("failed to register window class"));
         break;
     }
 
-    case codes::hwnd_fail:
+    case juju_codes::hwnd_fail:
     {
         output_window(ROS("hwnd failed to be created"));
         break;
     }
 
-    case codes::show_window_fail:
+    case juju_codes::show_window_fail:
     {
         output_window(ROS("show window function fail"));
         break;
     }
 
-    case codes::menu_fail:
+    case juju_codes::menu_fail:
     {
         output_window(ROS("creating menu failed"));
         break;

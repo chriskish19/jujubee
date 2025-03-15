@@ -1,16 +1,21 @@
+#include NAMES_INCLUDE
+ 
 /*
 
-File: type_settings.hpp
 Purpose: Manage types throughout jujubee.
 
 */
 
+// names
+#include NAMES_INCLUDE
 
 // stl
-#include "main_project_jujubee\dependencies\stl\stl_macro.hpp"
+#include STL_INCLUDE
 
 // windows
-#include "main_project_jujubee\dependencies\win_api\windows_includes.hpp"
+#include WINDOWS_INCLUDE
+
+
 
 #if defined(UNICODE) || defined(_UNICODE)
 

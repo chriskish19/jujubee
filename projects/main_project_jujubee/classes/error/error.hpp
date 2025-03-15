@@ -1,3 +1,5 @@
+#include NAMES_INCLUDE
+
 /*
 
 File:		error.hpp
@@ -12,8 +14,8 @@ Info:		this should only be dependant on codes.hpp and can be used throughout juj
 #pragma once
 
 // dependencies
-#include "main_project_jujubee\dependencies\include_dependencies.hpp"
-#include "main_project_jujubee\classes\error\codes.hpp"
+#include include_dependencies_hpp
+#include codes_hpp
 
 namespace classes {
 	string get_location(std::source_location sl = std::source_location::current());
@@ -21,12 +23,12 @@ namespace classes {
 	// string conversions with error codes, if max_string_buffer is exceeded
 	// new is used to allocate a heap buffer to compensate
 	const size_t max_string_buffer = MAX_STRING;
-	std::wstring to_wide_string(const char* narrow, codes* code_p);
-	std::wstring to_wide_string(const std::string& narrow, codes* code_p);
-	std::string to_narrow_string(const wchar_t* wide, codes* code_p);
-	std::string to_narrow_string(const std::wstring& wide, codes* code_p);
+	std::wstring to_wide_string(const char* narrow, juju_codes* code_p);
+	std::wstring to_wide_string(const std::string& narrow, juju_codes* code_p);
+	std::string to_narrow_string(const wchar_t* wide, juju_codes* code_p);
+	std::string to_narrow_string(const std::wstring& wide, juju_codes* code_p);
 
-	void output_code(codes code);
+	void output_code(juju_codes code);
 	void output_window(string message, string title = ROS("ERROR WINDOW"));
 
 	class jujubee_error {
