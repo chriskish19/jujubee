@@ -15,10 +15,19 @@
 namespace classes {
 	class log {
 	public:
+		// message_length : this is used to reserve memory for
+		// m_message
 		log(std::size_t message_length);
 
+		// sets m_message to message
 		void set_message(const string& message);
-		string get_message() { return m_message; }
+		string get_message_copy() { return m_message; }
+
+		// if message is large and since copying is expensive
+		// return a pointer to the message
+		string* get_message_p() { return &m_message; }
+
+		// sets m_stime to the current time and prefixes it to m_message
 		void set_time();
 	protected:
 		// the log message
@@ -36,12 +45,33 @@ namespace classes {
 
 	class base_logger {
 	public:
+		// log_count : number of log messages (reserves memory in m_logs_vp)
+		// message_length : each message length (reserves memory in each log object)
 		base_logger(std::size_t log_count, std::size_t message_length);
+
+		// deallocate pointers/memory
 		~base_logger();
+
+		// add message using an index position
+		juju_codes add_message(const string& message, std::size_t index = 0);
+
+		// add message using m_log_pos as the index
+		juju_codes add_message(const string& message);
+
 	protected:
+		// current log position in vector (m_logs_vp)
+		std::size_t m_log_pos = 0;
+
+		// each log message max length to maintain performance
+		// if a log message exceeds this, memory will have to be allocated
 		const std::size_t m_message_length;
+
+		// number of log messages in the m_logs_vp
 		const std::size_t m_log_count;
-		std::vector<log*> m_logs_v;
+
+		// we reserve memory for this vector to the amount of
+		// log messages (m_log_count)
+		std::vector<log*>* m_logs_vp = new std::vector<log*>;
 	};
 }
 

@@ -9,12 +9,12 @@
 #pragma once
 #include NAMES_INCLUDE
 #include DEPENDENCIES_INCLUDE_PATH
-
+#include BASIC_INCLUDE_PATH
 
 namespace classes {
-	class window_logger {
+	class window_logger : starter{
 	public:
-
+		window_logger();
 
 	protected:
 
