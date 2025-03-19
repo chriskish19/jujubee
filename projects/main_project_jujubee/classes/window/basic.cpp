@@ -117,7 +117,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = window_settings();
-        if (code == juju_codes::success) {
+        if (code not_eq juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
@@ -126,7 +126,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = create_window();
-        if (code != juju_codes::success) {
+        if (code not_eq juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
@@ -135,7 +135,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = add_menu(m_window_handle);
-        if (code != juju_codes::success) {
+        if (code not_eq juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
@@ -144,7 +144,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = message_pump();
-        if (code != juju_codes::success) {
+        if (code not_eq juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }

@@ -27,7 +27,8 @@ namespace juju {
 		hwnd_fail,
 		show_window_fail,
 		menu_fail,
-		unknown
+		unknown,
+		getclientrect_fail
 	};
 
 	inline const character* success_description =					ROS("Operation completed successfully.");
@@ -45,6 +46,7 @@ namespace juju {
     inline const character* show_window_fail_description =			ROS("Failed to show the window.");
     inline const character* menu_fail_description =					ROS("Failed to create or display the menu.");
 	inline const character* unknown_description =					ROS("Unknown code");
+	inline const character* getclientrect_fail_description =		ROS("Failed to obtain client rect.");
 
 	class code_description : std::exception{
 	public:
@@ -70,6 +72,8 @@ namespace juju {
 	inline const code_description show_window_fail_code				(juju_codes::show_window_fail, show_window_fail_description);
 	inline const code_description menu_fail_code					(juju_codes::menu_fail, menu_fail_description);
 	inline const code_description unknown_code						(juju_codes::unknown, unknown_description);
+	inline const code_description getclientrect_fail_code			(juju_codes::getclientrect_fail, getclientrect_fail_description);
+
 
 	// matches the juju_code to a code_description object
 	code_description match_code(juju_codes code);

@@ -2,13 +2,23 @@
 
 #ifndef ENTRY_TEST
 
+namespace global {
+    juju::window_logger wl;
+
+    void log_system_message() {
+        // send message to system log window
+    }
+}
+
 int WINAPI wWinMain(
     _In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPWSTR lpCmdLine,
     _In_ int nShowCmd
 ) {
-    
+    std::jthread local_wl_thread(&juju::window_logger::go, &global::wl);
+
+
     juju::exception run_program;
     run_program.go();
 

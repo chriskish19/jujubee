@@ -405,83 +405,81 @@ void juju::output_code(juju_codes code)
         return;
     }
 
-
-
     case juju_codes::null_pointer:
     {
-        output_window(ROS("pointer is null pointer"));
+        output_window(null_pointer_description);
         break;
     }
 
     case juju_codes::window_problem:
     {
-        output_window(ROS("problem with win32 window"));
+        output_window(window_problem_description);
         break;
     }
 
     case juju_codes::exception_thrown:
     {
-        output_window(ROS("exception was thrown"));
+        output_window(exception_thrown_description);
         break;
     }
 
     case juju_codes::empty_file:
     {
-        output_window(ROS("file is empty"));
+        output_window(empty_file_description);
         break;
     }
 
     case juju_codes::string_length_too_long:
     {
-        output_window(ROS("string is too long"));
+        output_window(string_length_too_long_description);
         break;
     }
 
     case juju_codes::to_wide_string_failed:
     {
-        output_window(ROS("wide string conversion failed"));
+        output_window(to_wide_string_failed_description);
         break;
     }
 
 
     case juju_codes::to_narrow_string_failed:
     {
-        output_window(ROS("narrow string conversion failed"));
+        output_window(to_narrow_string_failed_description);
         break;
     }
 
     case juju_codes::class_already_registered:
     {
-        output_window(ROS("window class has been registered already"));
+        output_window(class_already_registered_description);
         break;
     }
 
     case juju_codes::failed_to_register_class:
     {
-        output_window(ROS("failed to register window class"));
+        output_window(failed_to_register_class_description);
         break;
     }
 
     case juju_codes::hwnd_fail:
     {
-        output_window(ROS("hwnd failed to be created"));
+        output_window(hwnd_fail_description);
         break;
     }
 
     case juju_codes::show_window_fail:
     {
-        output_window(ROS("show window function fail"));
+        output_window(show_window_fail_description);
         break;
     }
 
     case juju_codes::menu_fail:
     {
-        output_window(ROS("creating menu failed"));
+        output_window(menu_fail_description);
         break;
     }
 
     default:
-        output_window(ROS("code not found"));
+        output_window(unknown_description);
     }
 }
 

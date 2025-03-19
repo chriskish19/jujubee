@@ -55,6 +55,8 @@ namespace juju {
 		// add message using m_log_pos as the index
 		juju_codes add_message(const string& message);
 
+		// get a pointer to the logs vector
+		std::vector<log*>* get_logs_vec_pointer() { return m_logs_vp; }
 	protected:
 		// current log position in vector (m_logs_vp)
 		std::size_t m_log_pos = 0;

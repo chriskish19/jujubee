@@ -37,6 +37,9 @@ namespace juju {
         catch (juju::jujubee_error& e) {
             e.vs_output_full_message();
         }
+        catch (const std::filesystem::filesystem_error& e) {
+            // file system error here
+        }
         // Memory allocation failure (e.g., `new` operator failure)
         catch (const std::bad_alloc& e) {
             std::cerr << "Memory allocation error: " << e.what() << '\n';
@@ -53,16 +56,13 @@ namespace juju {
         catch (const std::logic_error& e) {
             std::cerr << "Logic error: " << e.what() << '\n';
         }
-        // Standard runtime errors (e.g., `std::runtime_error`, `std::overflow_error`)
-        catch (const std::runtime_error& e) {
-            std::cerr << "Runtime error: " << e.what() << '\n';
-        }
         // Errors from the system API (e.g., file I/O, socket issues)
         catch (const std::system_error& e) {
             std::cerr << "System error: " << e.what() << '\n';
         }
-        catch (const std::filesystem::filesystem_error& e) {
-            // file system error here
+        // Standard runtime errors (e.g., `std::runtime_error`, `std::overflow_error`)
+        catch (const std::runtime_error& e) {
+            std::cerr << "Runtime error: " << e.what() << '\n';
         }
         // C++ standard exception base class (catches any unhandled standard exceptions)
         catch (const std::exception& e) {

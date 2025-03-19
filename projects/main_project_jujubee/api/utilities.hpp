@@ -8,8 +8,13 @@
 #pragma once
 #include NAMES_INCLUDE
 #include DEPENDENCIES_INCLUDE_PATH
+#include ERROR_INCLUDE_PATH
 
-namespace api {
-	
+namespace juju_api {
+	UINT get_window_width(HWND window_handle);
+	UINT get_window_height(HWND window_handle);
+
+	UINT get_window_height(HWND window_handle, juju::juju_codes* code) noexcept;
+	UINT get_window_width(HWND window_handle, juju::juju_codes* code) noexcept;
 }
 
