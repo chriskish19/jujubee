@@ -10,6 +10,6 @@
 #pragma once
 #include NAMES_INCLUDE
 
-namespace test {
+namespace juju {
 
 }

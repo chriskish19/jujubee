@@ -12,8 +12,10 @@
 #include NAMES_INCLUDE
 #include DEPENDENCIES_INCLUDE_PATH
 #include CODES_INCLUDE_PATH
+#include STL_INCLUDE_PATH
 
-namespace classes {
+
+namespace juju {
 	string get_location(std::source_location sl = std::source_location::current());
 
 	// string conversions with error codes, if max_string_buffer is exceeded
@@ -27,7 +29,7 @@ namespace classes {
 	void output_code(juju_codes code);
 	void output_window(string message, string title = ROS("ERROR WINDOW"));
 
-	class jujubee_error {
+	class jujubee_error : std::exception {
 	public:
 		jujubee_error(code_description code, string location = get_location())
 			:m_code(code),m_location(location){ }

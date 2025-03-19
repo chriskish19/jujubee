@@ -11,13 +11,14 @@
 #include DEPENDENCIES_INCLUDE_PATH
 #include BASIC_INCLUDE_PATH
 
-namespace classes {
+namespace juju {
 	class window_logger : starter{
 	public:
 		window_logger();
 
+		juju_codes go();
 	protected:
-
+		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 
 	};
 }

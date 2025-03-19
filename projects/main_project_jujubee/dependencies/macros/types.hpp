@@ -15,7 +15,7 @@
 
 #if defined(UNICODE) || defined(_UNICODE)
 
-namespace classes {
+namespace juju {
 	using string = std::wstring;
 	using ostringstream = std::wostringstream;
 	using character = wchar_t;
@@ -26,7 +26,7 @@ namespace classes {
 
 #else
 
-namespace classes {
+namespace juju {
 	using string = std::string;
 	using ostringstream = std::ostringstream;
 	using character = char;

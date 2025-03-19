@@ -8,13 +8,11 @@ int WINAPI wWinMain(
     _In_ LPWSTR lpCmdLine,
     _In_ int nShowCmd
 ) {
-    classes::window* main_window = new classes::window;
+    
+    juju::exception run_program;
+    run_program.go();
 
-    if (main_window != nullptr) {
-        delete main_window;
-    }
-
-    return static_cast<int>(classes::juju_codes::success);
+    return static_cast<int>(juju::juju_codes::success);
 }
 
 
@@ -29,7 +27,7 @@ int WINAPI wWinMain(
 ) {
     // Run tests here
 
-    return static_cast<int>(classes::juju_codes::success);
+    return static_cast<int>(juju::juju_codes::success);
 }
 
 

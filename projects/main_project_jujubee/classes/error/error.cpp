@@ -3,19 +3,19 @@
 
 
 
-void classes::jujubee_error::vs_output_full_message()
+void juju::jujubee_error::vs_output_full_message()
 {
 	string output_message = m_code.m_description + ROS("|") + m_location;
 	
 	OutputDebugString(output_message.c_str());
 }
 
-classes::string classes::jujubee_error::full_message()
+juju::string juju::jujubee_error::full_message()
 {
     return m_code.m_description + ROS("|") + m_location;
 }
 
-classes::string classes::get_location(std::source_location sl)
+juju::string juju::get_location(std::source_location sl)
 {
     std::string function_name = sl.function_name();
     std::string line = std::to_string(sl.line());
@@ -35,7 +35,7 @@ classes::string classes::get_location(std::source_location sl)
 #endif
 }
 
-std::wstring classes::to_wide_string(const char* narrow, juju_codes* code_p)
+std::wstring juju::to_wide_string(const char* narrow, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -122,7 +122,7 @@ std::wstring classes::to_wide_string(const char* narrow, juju_codes* code_p)
     return temp_buffer;
 }
 
-std::wstring classes::to_wide_string(const std::string& narrow, juju_codes* code_p)
+std::wstring juju::to_wide_string(const std::string& narrow, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -212,7 +212,7 @@ std::wstring classes::to_wide_string(const std::string& narrow, juju_codes* code
     return temp_buffer;
 }
 
-std::string classes::to_narrow_string(const wchar_t* wide, juju_codes* code_p)
+std::string juju::to_narrow_string(const wchar_t* wide, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -303,7 +303,7 @@ std::string classes::to_narrow_string(const wchar_t* wide, juju_codes* code_p)
     return temp_buffer_str;
 }
 
-std::string classes::to_narrow_string(const std::wstring& wide, juju_codes* code_p)
+std::string juju::to_narrow_string(const std::wstring& wide, juju_codes* code_p)
 {
     // return nothing if code is nullptr
     if (code_p == nullptr) {
@@ -396,7 +396,7 @@ std::string classes::to_narrow_string(const std::wstring& wide, juju_codes* code
     return temp_buffer_str;
 }
 
-void classes::output_code(juju_codes code)
+void juju::output_code(juju_codes code)
 {
 
     switch (code) {
@@ -485,7 +485,7 @@ void classes::output_code(juju_codes code)
     }
 }
 
-void classes::output_window(string message, string title)
+void juju::output_window(string message, string title)
 {
     MessageBox(
         nullptr,                // No owner window

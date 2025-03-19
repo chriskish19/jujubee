@@ -13,7 +13,7 @@
 #include CODES_INCLUDE_PATH
 #include ERROR_INCLUDE_PATH
 
-namespace classes {
+namespace juju {
 	// abstract class
 	class foundation {
 	public:
@@ -52,6 +52,7 @@ namespace classes {
 	public:
 		window();
 
+		void go();
 	protected:
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 

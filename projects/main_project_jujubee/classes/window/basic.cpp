@@ -1,12 +1,12 @@
 #include NAMES_INCLUDE
 #include BASIC_INCLUDE_PATH
 
-classes::starter::starter(const string& class_name)
+juju::starter::starter(const string& class_name)
 {
     m_c_name = class_name;
 }
 
-LRESULT classes::starter::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT juju::starter::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     // reroute to private window proc
     starter* p_window_rerouter = nullptr;
@@ -34,7 +34,7 @@ LRESULT classes::starter::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
     }
 }
 
-LRESULT classes::starter::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT juju::starter::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg) {
     case WM_DESTROY:
@@ -46,7 +46,7 @@ LRESULT classes::starter::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LP
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-classes::juju_codes classes::starter::window_settings()
+juju::juju_codes juju::starter::window_settings()
 {
     // the class might already be registered
     if (m_class_atm.load() > 0) {
@@ -65,7 +65,7 @@ classes::juju_codes classes::starter::window_settings()
     return juju_codes::success;
 }
 
-classes::juju_codes classes::starter::create_window()
+juju::juju_codes juju::starter::create_window()
 {
     m_window_handle = CreateWindowEx(
         0,                                              // Optional window styles.
@@ -94,7 +94,7 @@ classes::juju_codes classes::starter::create_window()
     return juju_codes::success;
 }
 
-classes::juju_codes classes::starter::message_pump()
+juju::juju_codes juju::starter::message_pump()
 {
     // Run the message loop.
     MSG msg = { };
@@ -107,34 +107,51 @@ classes::juju_codes classes::starter::message_pump()
     return juju_codes::success;
 }
 
-classes::window::window()
+juju::window::window()
+{
+    
+}
+
+void juju::window::go()
 {
     {
         juju_codes code;
         code = window_settings();
-        output_code(code);
+        if (code == juju_codes::success) {
+            code_description code_obj = match_code(code);
+            throw jujubee_error(code_obj);
+        }
     }
 
     {
         juju_codes code;
         code = create_window();
-        output_code(code);
+        if (code != juju_codes::success) {
+            code_description code_obj = match_code(code);
+            throw jujubee_error(code_obj);
+        }
     }
 
     {
         juju_codes code;
         code = add_menu(m_window_handle);
-        output_code(code);
+        if (code != juju_codes::success) {
+            code_description code_obj = match_code(code);
+            throw jujubee_error(code_obj);
+        }
     }
-
+    
     {
         juju_codes code;
         code = message_pump();
-        output_code(code);
+        if (code != juju_codes::success) {
+            code_description code_obj = match_code(code);
+            throw jujubee_error(code_obj);
+        }
     }
 }
 
-LRESULT classes::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT juju::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg) {
         case WM_COMMAND:
@@ -156,7 +173,7 @@ LRESULT classes::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPA
     return starter::ThisWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-classes::juju_codes classes::window::add_menu(HWND window_handle)
+juju::juju_codes juju::window::add_menu(HWND window_handle)
 {
     HMENU hMenu = CreateMenu();
     if (hMenu == nullptr) {

@@ -9,9 +9,9 @@
 #include NAMES_INCLUDE
 #include TYPES_INCLUDE_PATH
 #include SETTINGS_INCLUDE_PATH
+#include STL_INCLUDE_PATH
 
-
-namespace classes {
+namespace juju {
 	enum class juju_codes {
 		success = 0,
 		unintialized,
@@ -26,7 +26,8 @@ namespace classes {
 		failed_to_register_class,
 		hwnd_fail,
 		show_window_fail,
-		menu_fail
+		menu_fail,
+		unknown
 	};
 
 	inline const character* success_description =					ROS("Operation completed successfully.");
@@ -43,8 +44,9 @@ namespace classes {
     inline const character* hwnd_fail_description =					ROS("Failed to obtain window handle.");
     inline const character* show_window_fail_description =			ROS("Failed to show the window.");
     inline const character* menu_fail_description =					ROS("Failed to create or display the menu.");
+	inline const character* unknown_description =					ROS("Unknown code");
 
-	class code_description {
+	class code_description : std::exception{
 	public:
 		code_description(juju_codes code, string description)
 			:m_code(code),m_description(description) { }
@@ -67,4 +69,8 @@ namespace classes {
 	inline const code_description hwnd_fail_code					(juju_codes::hwnd_fail, hwnd_fail_description);
 	inline const code_description show_window_fail_code				(juju_codes::show_window_fail, show_window_fail_description);
 	inline const code_description menu_fail_code					(juju_codes::menu_fail, menu_fail_description);
+	inline const code_description unknown_code						(juju_codes::unknown, unknown_description);
+
+	// matches the juju_code to a code_description object
+	code_description match_code(juju_codes code);
 }

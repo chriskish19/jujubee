@@ -11,7 +11,7 @@
 #include NAMES_INCLUDE
 #include DEPENDENCIES_INCLUDE_PATH
 
-namespace classes {
+namespace juju {
 	class file_logger {
 	public:
 

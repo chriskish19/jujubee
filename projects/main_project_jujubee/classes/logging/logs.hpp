@@ -12,7 +12,7 @@
 #include DEPENDENCIES_INCLUDE_PATH
 #include CODES_INCLUDE_PATH
 
-namespace classes {
+namespace juju {
 	class log {
 	public:
 		// message_length : this is used to reserve memory for
@@ -35,9 +35,6 @@ namespace classes {
 
 		// the time stamp in a string
 		string m_stime;
-
-		// the time stamp
-		std::chrono::steady_clock::time_point m_time;
 
 		// reserve memory for the length of m_message
 		const std::size_t m_message_length_reserved;

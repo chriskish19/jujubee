@@ -15,6 +15,7 @@
 #include LOGS_INCLUDE_PATH			
 #include WINDOWLOGGER_INCLUDE_PATH	
 #include BASIC_INCLUDE_PATH	
+#include EXCEPT_INCLUDE_PATH
 
 #endif
 
