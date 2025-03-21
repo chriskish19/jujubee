@@ -19,6 +19,7 @@ namespace juju {
 	class window_logger : starter{
 	public:
 		window_logger();
+		~window_logger();
 
 		juju_codes go();
 	protected:
@@ -44,6 +45,6 @@ namespace juju {
 
 		// this is used when screen resolution changes
 		// and we need more or less single line rects
-		juju_codes update_vector_of_rects();
+		juju_codes update_vector_of_rects(std::size_t new_size);
 	};
 }
