@@ -23,6 +23,8 @@ namespace juju {
 
 		juju_codes go();
 	protected:
+		juju_codes create_window() override;
+
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 		
 		// 1000 messages and each message max length 512 characters

@@ -16,13 +16,16 @@
 namespace juju {
 	class scroll {
 	public:
-		scroll(SCROLLINFO si,HWND window_handle);
+		scroll(HWND window_handle, std::size_t max_lines, std::size_t max_line_length);
 
 
-
+		juju_codes mouse_wheel();
+		juju_codes vertical_drag();
+		juju_codes horizontal_drag();
 	protected:
 		int m_scroll_position = 0;
-
+		HWND m_window_handle;
+		std::size_t m_max_lines;
 
 	};
 }

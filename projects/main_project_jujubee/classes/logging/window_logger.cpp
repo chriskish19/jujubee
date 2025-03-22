@@ -31,6 +31,35 @@ juju::window_logger::~window_logger() {
     DeleteObject(m_wl_font);
 }
 
+juju::juju_codes juju::window_logger::create_window() {
+    m_window_handle = CreateWindowEx(
+        0,                                              // Optional window styles.
+        m_c_name.c_str(),                               // Window class
+        m_title.c_str(),                                // Window text
+        WS_OVERLAPPEDWINDOW |                           // Window style
+        WS_HSCROLL | WS_VSCROLL,                        // scroll bars
+
+        // Size and position
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+
+        NULL,                                           // Parent window    
+        NULL,                                           // Load the menu here
+        m_hinst,                                        // Instance handle
+        this                                            // Additional application data
+    );
+
+    if (m_window_handle == nullptr) {
+        return juju_codes::hwnd_fail;
+    }
+
+
+    if (ShowWindow(m_window_handle, SW_SHOW) > 0) {
+        return juju_codes::show_window_fail;
+    }
+
+    return juju_codes::success;
+}
+
 juju::juju_codes juju::window_logger::update_vector_of_rects(std::size_t new_size) {
     std::size_t current_size = m_single_lines.size();
     
