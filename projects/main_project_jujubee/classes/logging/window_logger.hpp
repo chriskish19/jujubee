@@ -13,7 +13,7 @@
 #include LOGS_INCLUDE_PATH
 #include UTILITIES_INCLUDE_PATH
 #include ERROR_INCLUDE_PATH
-
+#include SCROLL_INCLUDE_PATH
 
 namespace juju {
 	class window_logger : starter{
@@ -28,7 +28,7 @@ namespace juju {
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 		
 		// 1000 messages and each message max length 512 characters
-		base_logger m_logger = base_logger(1000,512);
+		base_logger m_logger = base_logger(LOGGER_LINES,LOGGER_MESSAGE_LENGTH);
 
 		// we allocate all the neccesary rects for the logger window
 		// to print the messages into
@@ -39,7 +39,7 @@ namespace juju {
 
 		// custom font
 		HFONT m_wl_font = nullptr;
-		const std::size_t m_font_size = 16;
+		const std::size_t m_font_size = LINE_HEIGHT;
 
 		// keep track of screen resolution
 		int m_sr_x = GetSystemMetrics(SM_CXSCREEN); // screen width
@@ -48,5 +48,37 @@ namespace juju {
 		// this is used when screen resolution changes
 		// and we need more or less single line rects
 		juju_codes update_vector_of_rects(std::size_t new_size);
+
+		
+        scroll m_scrolling = scroll(
+			
+			SCROLLINFO{
+				sizeof(SCROLLINFO), // cbSize
+				SIF_ALL,            // fMask
+				0,                  // nMin
+				LOGGER_LINES,		// nMax
+				PAGE_LINES,         // nPage
+				0,                  // nPos
+				0                   // nTrackPos
+			},
+			SCROLLINFO{
+				sizeof(SCROLLINFO), // cbSize
+				SIF_ALL,            // fMask
+				0,                  // nMin
+				LOGGER_LINES,		// nMax
+				PAGE_LINES,         // nPage
+				0,                  // nPos
+				0                   // nTrackPos
+			},
+			SCROLLINFO{
+				sizeof(SCROLLINFO), // cbSize
+				SIF_ALL,            // fMask
+				0,                  // nMin
+				LOGGER_LINES,		// nMax
+				PAGE_LINES,         // nPage
+				0,                  // nPos
+				0                   // nTrackPos
+			},
+			LINE_HEIGHT);
 	};
 }

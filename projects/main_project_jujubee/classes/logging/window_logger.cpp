@@ -148,9 +148,21 @@ LRESULT juju::window_logger::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam,
             break;
         }
 
-        case VK_SCROLL:
+        case WM_HSCROLL:
         {
-            
+            m_scrolling.horizontal_drag(hwnd,wParam);
+            break;
+        }
+
+        case WM_VSCROLL:
+        {
+            m_scrolling.vertical_drag(hwnd,wParam);
+            break;
+        }
+
+        case WM_MOUSEWHEEL:
+        {
+            m_scrolling.mouse_wheel(hwnd, wParam);
             break;
         }
 

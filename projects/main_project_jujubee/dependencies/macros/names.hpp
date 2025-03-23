@@ -24,3 +24,4 @@
 #define PCH_INCLUDE_PATH						pch_hpp
 #define EXCEPT_INCLUDE_PATH						juju_except_hpp
 #define SCROLL_INCLUDE_PATH						scroll_hpp
+#define STANDARD_INCLUDE_PATH					standard_hpp
