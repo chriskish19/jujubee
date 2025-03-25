@@ -30,10 +30,6 @@ namespace juju {
 		// 1000 messages and each message max length 512 characters
 		base_logger m_logger = base_logger(LOGGER_LINES,LOGGER_MESSAGE_LENGTH);
 
-		// we allocate all the neccesary rects for the logger window
-		// to print the messages into
-		std::vector<RECT*> m_single_lines;
-
 		// create a font for window logger
 		juju_codes setup_font(std::size_t font_size);
 
@@ -49,6 +45,7 @@ namespace juju {
 		// and we need more or less single line rects
 		juju_codes update_vector_of_rects(std::size_t new_size);
 
+		juju_codes paint_window(HWND hwnd);
 		
         scroll m_scrolling = scroll(
 			
@@ -61,24 +58,15 @@ namespace juju {
 				0,                  // nPos
 				0                   // nTrackPos
 			},
-			SCROLLINFO{
-				sizeof(SCROLLINFO), // cbSize
-				SIF_ALL,            // fMask
-				0,                  // nMin
-				LOGGER_LINES,		// nMax
-				PAGE_LINES,         // nPage
-				0,                  // nPos
-				0                   // nTrackPos
-			},
-			SCROLLINFO{
-				sizeof(SCROLLINFO), // cbSize
-				SIF_ALL,            // fMask
-				0,                  // nMin
-				LOGGER_LINES,		// nMax
-				PAGE_LINES,         // nPage
-				0,                  // nPos
-				0                   // nTrackPos
-			},
+
 			LINE_HEIGHT);
+
+		// we allocate all the neccesary rects for the logger window
+		// to print the messages into
+		std::vector<RECT*>* m_single_lines_p = nullptr;
+
+		// index for accessing a rect pointer from m_single_lines_p
+		std::size_t m_slvp_index = 0;
+		RECT* get_rect_p();
 	};
 }

@@ -16,19 +16,19 @@
 namespace juju {
 	class scroll {
 	public:
-		scroll(SCROLLINFO v_si, SCROLLINFO h_si, SCROLLINFO mouse_si, std::size_t line_height);
+		scroll(SCROLLINFO si, std::size_t line_height);
 
 
 		juju_codes mouse_wheel(HWND hwnd, WPARAM wParam);
 		juju_codes vertical_drag(HWND hwnd,WPARAM wParam);
 		juju_codes horizontal_drag(HWND hwnd,WPARAM wParam);
+
+		int get_v_position() { return m_vscroll_position; }
+		int get_h_position() { return m_hscroll_position; }
 	protected:
-		int m_scroll_position_v = 0;
-		int m_scroll_position_h = 0;
-		int m_scroll_position_m = 0;
-		SCROLLINFO m_si_h;
-		SCROLLINFO m_si_v;
-		SCROLLINFO m_mouse_si;
-		const std::size_t m_line_height;
+		int m_vscroll_position = 0;
+		int m_hscroll_position = 0;
+		SCROLLINFO m_si = {};
+		const std::size_t m_line_height = 0;
 	};
 }
