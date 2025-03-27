@@ -29,6 +29,9 @@ namespace juju {
 
 		// sets m_stime to the current time and prefixes it to m_message
 		void set_time();
+
+		// returns the length of the m_stime string
+		std::size_t get_time_length() { return m_stime.length(); }
 	protected:
 		// the log message
 		string m_message;
@@ -50,7 +53,7 @@ namespace juju {
 		~base_logger();
 
 		// add message using an index position
-		juju_codes add_message(const string& message, std::size_t index = 0);
+		juju_codes add_message(const string& message, std::size_t index);
 
 		// add message using m_log_pos as the index
 		juju_codes add_message(const string& message);

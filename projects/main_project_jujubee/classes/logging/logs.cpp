@@ -5,7 +5,6 @@ juju::log::log(std::size_t message_length)
     :m_message_length_reserved(message_length)
 {
     m_message.reserve(message_length);
-    set_time();
 }
 
 void juju::log::set_message(const string& message)

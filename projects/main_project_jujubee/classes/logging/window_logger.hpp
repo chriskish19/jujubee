@@ -22,8 +22,17 @@ namespace juju {
 		~window_logger();
 
 		juju_codes go();
+
+		juju_codes wait_until_init();
+		juju_codes wait_until_closed();
+
+		juju_codes send_message(const string& message);
 	protected:
+		std::atomic<bool> m_wait_b = false;
+		std::condition_variable m_wait_cv;
+
 		juju_codes create_window() override;
+		juju_codes message_pump() override;
 
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 		
@@ -47,19 +56,7 @@ namespace juju {
 
 		juju_codes paint_window(HWND hwnd);
 		
-        scroll m_scrolling = scroll(
-			
-			SCROLLINFO{
-				sizeof(SCROLLINFO), // cbSize
-				SIF_ALL,            // fMask
-				0,                  // nMin
-				LOGGER_LINES,		// nMax
-				PAGE_LINES,         // nPage
-				0,                  // nPos
-				0                   // nTrackPos
-			},
-
-			LINE_HEIGHT);
+		scroll m_scrolling;
 
 		// we allocate all the neccesary rects for the logger window
 		// to print the messages into

@@ -33,6 +33,7 @@ juju::window_logger::~window_logger() {
 
     if (m_single_lines_p != nullptr) {
         delete m_single_lines_p;
+        m_single_lines_p = nullptr;
     }
 
     // delete created font
@@ -63,6 +64,19 @@ juju::juju_codes juju::window_logger::create_window() {
 
     if (ShowWindow(m_window_handle, SW_SHOW) > 0) {
         return juju_codes::show_window_fail;
+    }
+
+    return juju_codes::success;
+}
+
+juju::juju_codes juju::window_logger::message_pump()
+{
+    // Run the message loop.
+    MSG msg = { };
+    while (GetMessage(&msg, NULL, 0, 0) > 0)
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
     }
 
     return juju_codes::success;
@@ -100,9 +114,23 @@ juju::juju_codes juju::window_logger::paint_window(HWND hwnd)
     PAINTSTRUCT ps;
     HDC hdc = BeginPaint(hwnd, &ps);
 
-    // use custom font object
-    SelectObject(hdc, m_wl_font);
+    // get a si object
+    SCROLLINFO si = {};
 
+    // Get vertical scroll bar position.
+    si.cbSize = sizeof(si);
+    si.fMask = SIF_POS;
+    GetScrollInfo(hwnd, SB_VERT, &si);
+    m_scrolling.set_v_position(si.nPos);
+
+    // Get horizontal scroll bar position.
+    GetScrollInfo(hwnd, SB_HORZ, &si);
+    m_scrolling.set_h_position(si.nPos);
+
+    // get positions
+    int xPos = m_scrolling.get_h_position();
+    int yChar = m_scrolling.get_vertical_unit();
+    int yPos = m_scrolling.get_v_position();
 
     RECT lw_rect;
     if (!GetClientRect(hwnd, &lw_rect)) {
@@ -112,20 +140,24 @@ juju::juju_codes juju::window_logger::paint_window(HWND hwnd)
 
     FillRect(hdc, &lw_rect, (HBRUSH)(COLOR_WINDOW + 1));
 
-
-    UINT window_width = lw_rect.right - lw_rect.left;
-    UINT window_height = lw_rect.bottom - lw_rect.top;
-    UINT number_of_lines = window_height / m_font_size;
-
     auto log_vec_p = m_logger.get_logs_vec_pointer();
 
+    LONG window_width = lw_rect.right - lw_rect.left;
     LONG top = lw_rect.top;
-    LONG bottom = window_width + lw_rect.bottom - m_font_size;
+    LONG bottom = window_width + lw_rect.bottom;
 
-    std::size_t v_start_position = static_cast<std::size_t>(std::abs(m_scrolling.get_v_position()));
-    std::size_t v_end_position = v_start_position + number_of_lines;
+    // how many lines to print
+    std::size_t lines_number = window_width / yChar;
 
-    for (std::size_t i = v_start_position; i < v_end_position and i < log_vec_p->size(); ++i) {
+
+    std::size_t FirstLine = static_cast<std::size_t>(std::abs(yPos));
+    std::size_t LastLine = std::clamp(FirstLine + lines_number,(std::size_t)0,(std::size_t)LOGGER_LINES);
+
+    LONG left = lw_rect.left - xPos;
+    LONG right = lw_rect.right + xPos;
+
+    for (std::size_t i = FirstLine; i < LastLine and i < log_vec_p->size(); ++i) {
+
         // log pointer object
         auto log_p = log_vec_p->at(i);
 
@@ -136,7 +168,7 @@ juju::juju_codes juju::window_logger::paint_window(HWND hwnd)
         auto wl_rp = get_rect_p();
 
         // set the rect memory
-        *wl_rp = RECT{ lw_rect.left,top,lw_rect.right,bottom };
+        *wl_rp = RECT{ left,top,right,bottom };
 
 
         int text_size = DrawText(hdc, message_p->c_str(), -1, wl_rp, DT_LEFT);
@@ -205,7 +237,7 @@ juju::juju_codes juju::window_logger::go()
         juju_codes code = create_window();
         output_code(code);
     }
-	
+
     {
         juju_codes code = message_pump();
         output_code(code);
@@ -214,10 +246,51 @@ juju::juju_codes juju::window_logger::go()
     return juju_codes::success;
 }
 
+juju::juju_codes juju::window_logger::wait_until_init()
+{
+    // wait here
+    std::mutex local_mtx;
+    std::unique_lock<std::mutex> local_lock(local_mtx);
+    m_wait_cv.wait(local_lock, [this]
+        {
+            return m_wait_b.load();
+        });
+    
+    return juju_codes::success;
+}
+
+juju::juju_codes juju::window_logger::wait_until_closed()
+{
+    return juju_codes::success;
+}
+
+juju::juju_codes juju::window_logger::send_message(const string& message)
+{
+    return m_logger.add_message(message);
+}
+
 LRESULT juju::window_logger::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg) {
         
+        case WM_CREATE:
+        {
+            m_scrolling.pre_window_setup(hwnd, m_wl_font);
+            break;
+        }
+
+        case WM_SHOWWINDOW:
+        {
+            // main window logger window was successfully created
+            if (hwnd == m_window_handle) {
+
+                // tell waiting thread its safe to procceed...
+                m_wait_b.store(true);
+                m_wait_cv.notify_all();
+            }
+            break;
+        }
+
         case WM_DISPLAYCHANGE:
         {
             // update our variables
@@ -230,7 +303,7 @@ LRESULT juju::window_logger::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam,
 
         case WM_HSCROLL:
         {
-            m_scrolling.horizontal_drag(hwnd,wParam);
+            m_scrolling.horizontal_drag(hwnd, wParam);
             break;
         }
 
@@ -240,15 +313,9 @@ LRESULT juju::window_logger::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam,
             break;
         }
 
-        case WM_MOUSEWHEEL:
-        {
-            m_scrolling.mouse_wheel(hwnd, wParam);
-            break;
-        }
-
         case WM_SIZE:
         {
-            InvalidateRect(hwnd, nullptr, TRUE);  // Force redraw on resize
+            m_scrolling.window_size_change(hwnd, lParam);
             break;
         }
 

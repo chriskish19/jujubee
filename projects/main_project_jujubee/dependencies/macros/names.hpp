@@ -1,7 +1,7 @@
 /***********************************************
 * File: names.hpp
 *
-* Purpose: makes for easy file name changes
+* Purpose: makes for easy file name changes and file moves
 *
 *
 *
@@ -25,3 +25,4 @@
 #define EXCEPT_INCLUDE_PATH						juju_except_hpp
 #define SCROLL_INCLUDE_PATH						scroll_hpp
 #define STANDARD_INCLUDE_PATH					standard_hpp
+#define RANDOM_INCLUDE_PATH						random_hpp
