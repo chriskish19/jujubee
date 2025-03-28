@@ -161,8 +161,8 @@ juju::juju_codes juju::window_logger::paint_window(HWND hwnd)
         // log pointer object
         auto log_p = log_vec_p->at(i);
 
-        // message pointer
-        string* message_p = log_p->get_message_p();
+        // make a copy
+        string message_p = log_p->get_message_copy();
 
         // get a rect pointer
         auto wl_rp = get_rect_p();
@@ -170,8 +170,8 @@ juju::juju_codes juju::window_logger::paint_window(HWND hwnd)
         // set the rect memory
         *wl_rp = RECT{ left,top,right,bottom };
 
-
-        int text_size = DrawText(hdc, message_p->c_str(), -1, wl_rp, DT_LEFT);
+        // display the message
+        int text_size = DrawText(hdc, message_p.c_str(), -1, wl_rp, DT_LEFT);
 
         // 
         top += text_size;
@@ -197,6 +197,12 @@ RECT* juju::window_logger::get_rect_p()
     }
 
     return m_single_lines_p->at(m_slvp_index);
+}
+
+juju::juju_codes juju::window_logger::update_logger_window()
+{
+    InvalidateRect(m_window_handle, get_rect_p(), TRUE);
+    return juju_codes::success;
 }
 
 juju::juju_codes juju::window_logger::setup_font(std::size_t font_size) {
@@ -266,7 +272,9 @@ juju::juju_codes juju::window_logger::wait_until_closed()
 
 juju::juju_codes juju::window_logger::send_message(const string& message)
 {
-    return m_logger.add_message(message);
+    m_logger.add_message(message);
+    update_logger_window();
+    return juju_codes::success;
 }
 
 LRESULT juju::window_logger::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)

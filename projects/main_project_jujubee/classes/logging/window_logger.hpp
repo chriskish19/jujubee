@@ -65,5 +65,7 @@ namespace juju {
 		// index for accessing a rect pointer from m_single_lines_p
 		std::size_t m_slvp_index = 0;
 		RECT* get_rect_p();
+
+		juju_codes update_logger_window();
 	};
 }

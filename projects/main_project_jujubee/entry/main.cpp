@@ -25,7 +25,7 @@ int WINAPI wWinMain(
     _In_ LPWSTR lpCmdLine,
     _In_ int nShowCmd
 ) {
-    juju::test_logging(100);
+    juju::slow_test_logging(100,1);
 
     return static_cast<int>(juju::juju_codes::success);
 }

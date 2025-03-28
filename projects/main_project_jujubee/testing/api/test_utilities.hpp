@@ -17,4 +17,5 @@
 
 namespace juju {
 	juju_codes test_logging(std::size_t seconds);
+	juju_codes slow_test_logging(std::size_t seconds,std::size_t pause);
 }

@@ -1,3 +1,4 @@
+#include "logs.hpp"
 #include NAMES_INCLUDE
 #include LOGS_INCLUDE_PATH
 
@@ -9,7 +10,14 @@ juju::log::log(std::size_t message_length)
 
 void juju::log::set_message(const string& message)
 {
+    std::unique_lock<std::mutex> local_lock(m_message_mtx);
     m_message = message;
+}
+
+juju::string juju::log::get_message_copy()
+{
+    std::unique_lock<std::mutex> local_lock(m_message_mtx);
+    return m_message;
 }
 
 void juju::log::set_time()

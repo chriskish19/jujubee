@@ -21,10 +21,13 @@ namespace juju {
 
 		// sets m_message to message
 		void set_message(const string& message);
-		string get_message_copy() { return m_message; }
+
+
+		string get_message_copy();
 
 		// if message is large and since copying is expensive
 		// return a pointer to the message
+		// (unsafe for multithreading)
 		string* get_message_p() { return &m_message; }
 
 		// sets m_stime to the current time and prefixes it to m_message
@@ -41,6 +44,8 @@ namespace juju {
 
 		// reserve memory for the length of m_message
 		const std::size_t m_message_length_reserved;
+
+		std::mutex m_message_mtx;
 	};
 
 	class base_logger {

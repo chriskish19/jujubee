@@ -26,3 +26,5 @@
 #define SCROLL_INCLUDE_PATH						scroll_hpp
 #define STANDARD_INCLUDE_PATH					standard_hpp
 #define RANDOM_INCLUDE_PATH						random_hpp
+#define BUTTON_INCLUDE_PATH						button_hpp
+#define TASKBAR_INCLUDE_PATH					taskbar_hpp
