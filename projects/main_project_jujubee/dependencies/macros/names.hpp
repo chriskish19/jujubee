@@ -28,3 +28,5 @@
 #define RANDOM_INCLUDE_PATH						random_hpp
 #define BUTTON_INCLUDE_PATH						button_hpp
 #define TASKBAR_INCLUDE_PATH					taskbar_hpp
+#define MAIN_INCLUDE_PATH						main_hpp
+#define UI_INCLUDE_PATH							ui_hpp

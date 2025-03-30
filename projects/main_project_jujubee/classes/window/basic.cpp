@@ -132,6 +132,9 @@ void juju::window::go()
         }
     }
 
+    m_main_ui = ui(m_window_handle, (HMENU)button_ids::front, m_hinst, nullptr);
+
+
     {
         juju_codes code;
         code = add_menu(m_window_handle);
@@ -162,9 +165,43 @@ LRESULT juju::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
                 {
                     break;
                 }
+
+                case static_cast<int>(button_ids::front):
+                {
+                    m_main_ui.m_front_b.action(button_state::pressed);
+                    break;
+                }
+
                 default:
                     break;
             } // end of switch (wmId)
+            break;
+        }
+
+        case WM_SIZING:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hwnd, &ps);
+
+            // lParam holds a pointer to a RECT structure
+            RECT* lw_rect_p = reinterpret_cast<RECT*>(lParam);
+
+            FillRect(hdc, lw_rect_p, (HBRUSH)(COLOR_WINDOW + 1));
+
+            EndPaint(hwnd, &ps);
+
+            break;
+        }
+
+        case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hwnd, &ps);
+
+            FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
+
+            EndPaint(hwnd, &ps);
+
             break;
         }
     } // end of switch (uMsg)

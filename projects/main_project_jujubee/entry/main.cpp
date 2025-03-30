@@ -8,9 +8,13 @@ int WINAPI wWinMain(
     _In_ LPWSTR lpCmdLine,
     _In_ int nShowCmd
 ) {
+    juju::window* main_window = new juju::window;
+    main_window->go();
 
-    juju::exception run_program;
-    run_program.go();
+    if (main_window != nullptr) {
+        delete main_window;
+    }
+    
 
     return static_cast<int>(juju::juju_codes::success);
 }

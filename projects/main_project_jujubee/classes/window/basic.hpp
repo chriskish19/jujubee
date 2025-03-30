@@ -12,6 +12,9 @@
 #include DEPENDENCIES_INCLUDE_PATH
 #include CODES_INCLUDE_PATH
 #include ERROR_INCLUDE_PATH
+#include UI_INCLUDE_PATH
+
+
 
 namespace juju {
 	// abstract class
@@ -59,11 +62,18 @@ namespace juju {
 		juju_codes add_menu(HWND window_handle);
 
 		enum class window_ids {
-			console,
+			console = 0,
 			file,
 			open,
 			exit,
 			help
 		};
+
+		enum class button_ids {
+			front = 5
+		};
+
+
+		ui m_main_ui;
 	};
 }
