@@ -1,106 +1,51 @@
-#include NAMES_INCLUDE
-#include UI_INCLUDE_PATH
+enum class listbox_commands {
+    none = 0,
 
-juju::ui::ui(HWND window, HMENU menu, HINSTANCE hinst, LPVOID lp)
-{
+    // Adding & Removing Items
+    add_string,         // Adds a string to the list box.
+    insert_string,      // Inserts a string at a specific index.
+    delete_string,      // Removes an item at a specified index.
+    reset_content,      // Removes all items from the list box.
 
-    // front button setup
-    m_front_bd.window = window;
-    m_front_bd.menu = (HMENU)window_ids::b_front;
-    m_front_bd.hinst = hinst;
-    m_front_bd.lpParam = lp;
-    m_front_bd.button_caller = [this](button_state bs) {
-        this->front_button_action(bs);
-        };
+    // Selection Handling
+    get_cursel,         // Gets the index of the currently selected item (single-selection list).
+    set_cursel,         // Sets the selection to a specific index (single-selection list).
+    get_sel,            // Gets selection state of an item (multi-selection list).
+    set_sel,            // Selects/Deselects an item (multi-selection list).
+    get_selcount,       // Gets the number of selected items (multi-selection list).
+    get_selitems,       // Gets an array of selected items (multi-selection list).
 
-    m_front_b = button(m_front_bd);
-    m_front_b.create();
+    // Retrieving & Modifying Items
+    get_text,           // Gets the text of an item.
+    get_textlen,        // Gets the length of an item's text.
+    set_itemdata,       // Sets application-defined data for an item.
+    get_itemdata,       // Retrieves application-defined data for an item.
+    find_string,        // Finds an item that starts with a specified string.
+    find_stringexact,   // Finds an exact string match.
 
-    // refresh button setup
-    m_refresh_bd.window = window;
-    m_refresh_bd.menu = (HMENU)window_ids::b_refresh;
-    m_refresh_bd.hinst = hinst;
-    m_refresh_bd.lpParam = lp;
-    m_refresh_bd.button_caller = [this](button_state bs) {
-        this->refresh_button_action(bs);
-        };
+    // Size & Appearance
+    set_horizontalextent, // Sets horizontal scroll width.
+    get_horizontalextent, // Gets horizontal scroll width.
+    set_columnwidth,      // Sets the width of columns in a multi-column list box.
+    set_itemheight,       // Sets the height of an item (for owner-drawn list boxes).
+    get_itemheight,       // Gets the height of an item.
 
-    m_refresh_b = button(m_refresh_bd);
-    m_refresh_b.create();
+    // Miscellaneous
+    set_locale,         // Sets the locale for sorting.
+    get_locale,         // Gets the locale for sorting.
+    get_count,          // Gets the number of items in the list box.
+    dir,                // Adds files matching a specified mask (e.g., *.txt).
 
-    // front listbox setup
-    m_front_lb_ld.window = window;
-    m_front_lb_ld.menu = (HMENU)window_ids::lb_box;
-    m_front_lb_ld.hinst = hinst;
-    m_front_lb_ld.lpParam = lp;
-    m_front_lb_ld.listbox_caller = [this](listbox_commands lc) {
-        this->front_listbox_action(lc);
-        };
+    // Extended Features
+    set_caretindex,     // Sets focus to a specific item.
+    get_caretindex,     // Gets the index of the focused item.
+    set_topindex,       // Scrolls the list so a specified item is at the top.
+    get_topindex        // Gets the index of the topmost visible item.
+};
 
-    m_front_lb = listbox(m_front_lb_ld);
-    m_front_lb.create();
-
-}
-void juju::ui::front_button_action(button_state bs)
-{
-	switch (bs) {
-		case button_state::rest:
-		{
-			return;
-		}
-
-		case button_state::pressed:
-		{
-			MessageBox(nullptr, L"Button Clicked!", L"Notification", MB_OK | MB_ICONINFORMATION);
-			break;
-		}
-
-		case button_state::released:
-		{
-			break;
-		}
-
-		case button_state::holding:
-		{
-			break;
-		}
-
-	default:
-		break;
-	}
-}
-
-void juju::ui::refresh_button_action(button_state bs)
-{
-	switch (bs) {
-	    case button_state::rest:
-	    {
-		    return;
-	    }
-
-	    case button_state::pressed:
-	    {
-		    MessageBox(nullptr, L"Refresh Button Clicked!", L"Notification", MB_OK | MB_ICONINFORMATION);
-		    break;
-	    }
-
-	    case button_state::released:
-	    {
-		    break;
-	    }
-
-	    case button_state::holding:
-	    {
-		    break;
-	    }
-
-	default:
-		break;
-	}
-}
-
-void juju::ui::front_listbox_action(listbox_commands lc) {
-    switch (lc) {
+// Function to handle listbox commands
+void handle_listbox_command(listbox_commands command) {
+    switch (command) {
         case listbox_commands::none:
             // Handle none
             break;
@@ -191,8 +136,8 @@ void juju::ui::front_listbox_action(listbox_commands lc) {
         case listbox_commands::get_topindex:
             // Handle get_topindex
             break;
-    default:
-        // Handle unknown command
-        break;
+        default:
+            // Handle unknown command
+            break;
     }
 }

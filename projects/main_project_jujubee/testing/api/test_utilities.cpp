@@ -1,4 +1,3 @@
-#include "test_utilities.hpp"
 #include NAMES_INCLUDE
 #include TEST_UTILITIES_INCLUDE_PATH
 

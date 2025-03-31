@@ -28,7 +28,9 @@ namespace juju {
 		show_window_fail,
 		menu_fail,
 		unknown,
-		getclientrect_fail
+		getclientrect_fail,
+		lb_add_string_fail,
+		lb_get_selection_fail
 	};
 
 	inline const character* success_description =					ROS("Operation completed successfully.");
@@ -47,6 +49,9 @@ namespace juju {
     inline const character* menu_fail_description =					ROS("Failed to create or display the menu.");
 	inline const character* unknown_description =					ROS("Unknown code");
 	inline const character* getclientrect_fail_description =		ROS("Failed to obtain client rect.");
+	inline const character* lb_add_string_fail_description =		ROS("Failed to add string to list box.");
+	inline const character* lb_get_selection_fail =					ROS("Failed to get selected string inside listbox.");
+
 
 	class code_description : std::exception{
 	public:
@@ -73,7 +78,8 @@ namespace juju {
 	inline const code_description menu_fail_code					(juju_codes::menu_fail, menu_fail_description);
 	inline const code_description unknown_code						(juju_codes::unknown, unknown_description);
 	inline const code_description getclientrect_fail_code			(juju_codes::getclientrect_fail, getclientrect_fail_description);
-
+	inline const code_description lb_add_string_fail_code			(juju_codes::lb_add_string_fail, lb_add_string_fail_description);
+	inline const code_description lb_get_selection_fail_code		(juju_codes::lb_get_selection_fail, lb_add_string_fail_description);
 
 	// matches the juju_code to a code_description object
 	code_description match_code(juju_codes code);

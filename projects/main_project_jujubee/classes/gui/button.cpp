@@ -1,4 +1,3 @@
-#include "button.hpp"
 #include NAMES_INCLUDE
 #include BUTTON_INCLUDE_PATH
 
@@ -52,6 +51,7 @@ juju::juju_codes juju::button::create()
 
 void juju::button::action(button_state bs)
 {
+	m_b_state = bs;
 	m_bd.button_caller(bs);
 }
 

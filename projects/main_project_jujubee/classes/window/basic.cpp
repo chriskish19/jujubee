@@ -132,8 +132,8 @@ void juju::window::go()
         }
     }
 
-    m_main_ui = ui(m_window_handle, (HMENU)button_ids::front, m_hinst, nullptr);
-
+    m_main_ui = ui(m_window_handle, nullptr, m_hinst, nullptr);
+    m_main_ui.m_front_lb.add_string(ROS("Test string"));
 
     {
         juju_codes code;
@@ -166,10 +166,29 @@ LRESULT juju::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
                     break;
                 }
 
-                case static_cast<int>(button_ids::front):
+                case static_cast<int>(window_ids::b_front):
                 {
                     m_main_ui.m_front_b.action(button_state::pressed);
                     break;
+                }
+
+                case static_cast<int>(window_ids::b_refresh):
+                {
+                    m_main_ui.m_refresh_b.action(button_state::pressed);
+                    break;
+                }
+
+                case static_cast<int>(window_ids::lb_box):
+                {
+                    switch (HIWORD(wParam)) {
+                        case LBN_SELCHANGE: {
+                            juju_codes code;
+                            string selected_text = m_main_ui.m_front_lb.get_selection(&code);
+                            output_code(code);
+                            MessageBox(nullptr, selected_text.c_str(), ROS("Selected Item"), MB_OK);
+                            break;
+                        }
+                    }
                 }
 
                 default:

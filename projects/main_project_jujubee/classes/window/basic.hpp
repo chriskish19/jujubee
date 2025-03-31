@@ -61,19 +61,6 @@ namespace juju {
 
 		juju_codes add_menu(HWND window_handle);
 
-		enum class window_ids {
-			console = 0,
-			file,
-			open,
-			exit,
-			help
-		};
-
-		enum class button_ids {
-			front = 5
-		};
-
-
 		ui m_main_ui;
 	};
 }

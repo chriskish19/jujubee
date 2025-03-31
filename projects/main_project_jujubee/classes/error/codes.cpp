@@ -73,7 +73,17 @@ juju::code_description juju::match_code(juju_codes code)
         {
             return menu_fail_code;
         }
-            
+           
+        case juju_codes::lb_add_string_fail:
+        {
+            return lb_add_string_fail_code;
+        }
+
+        case juju_codes::lb_get_selection_fail:
+        {
+            return lb_get_selection_fail_code;
+        }
+
         default:
             return unknown_code;
     }
