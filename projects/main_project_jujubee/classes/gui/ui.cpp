@@ -40,6 +40,18 @@ juju::ui::ui(HWND window, HMENU menu, HINSTANCE hinst, LPVOID lp)
     m_front_lb = listbox(m_front_lb_ld);
     m_front_lb.create();
 
+	// front label setup
+	m_lb_label_d.window = window;
+	m_lb_label_d.menu = (HMENU)window_ids::label;
+	m_lb_label_d.hinst = hinst;
+	m_lb_label_d.lpParam = lp;
+	m_lb_label_d.label_caller = [this](label_commands command) {
+		this->lb_label_action(command);
+		};
+
+	m_lb_label = label(m_lb_label_d);
+	m_lb_label.create();
+
 }
 void juju::ui::front_button_action(button_state bs)
 {
@@ -101,98 +113,78 @@ void juju::ui::refresh_button_action(button_state bs)
 
 void juju::ui::front_listbox_action(listbox_commands lc) {
     switch (lc) {
-        case listbox_commands::none:
-            // Handle none
-            break;
-        case listbox_commands::add_string:
-            // Handle add_string
-            break;
-        case listbox_commands::insert_string:
-            // Handle insert_string
-            break;
-        case listbox_commands::delete_string:
-            // Handle delete_string
-            break;
-        case listbox_commands::reset_content:
-            // Handle reset_content
-            break;
-        case listbox_commands::get_cursel:
-            // Handle get_cursel
-            break;
-        case listbox_commands::set_cursel:
-            // Handle set_cursel
-            break;
-        case listbox_commands::get_sel:
-            // Handle get_sel
-            break;
-        case listbox_commands::set_sel:
-            // Handle set_sel
-            break;
-        case listbox_commands::get_selcount:
-            // Handle get_selcount
-            break;
-        case listbox_commands::get_selitems:
-            // Handle get_selitems
-            break;
-        case listbox_commands::get_text:
-            // Handle get_text
-            break;
-        case listbox_commands::get_textlen:
-            // Handle get_textlen
-            break;
-        case listbox_commands::set_itemdata:
-            // Handle set_itemdata
-            break;
-        case listbox_commands::get_itemdata:
-            // Handle get_itemdata
-            break;
-        case listbox_commands::find_string:
-            // Handle find_string
-            break;
-        case listbox_commands::find_stringexact:
-            // Handle find_stringexact
-            break;
-        case listbox_commands::set_horizontalextent:
-            // Handle set_horizontalextent
-            break;
-        case listbox_commands::get_horizontalextent:
-            // Handle get_horizontalextent
-            break;
-        case listbox_commands::set_columnwidth:
-            // Handle set_columnwidth
-            break;
-        case listbox_commands::set_itemheight:
-            // Handle set_itemheight
-            break;
-        case listbox_commands::get_itemheight:
-            // Handle get_itemheight
-            break;
-        case listbox_commands::set_locale:
-            // Handle set_locale
-            break;
-        case listbox_commands::get_locale:
-            // Handle get_locale
-            break;
-        case listbox_commands::get_count:
-            // Handle get_count
-            break;
-        case listbox_commands::dir:
-            // Handle dir
-            break;
-        case listbox_commands::set_caretindex:
-            // Handle set_caretindex
-            break;
-        case listbox_commands::get_caretindex:
-            // Handle get_caretindex
-            break;
-        case listbox_commands::set_topindex:
-            // Handle set_topindex
-            break;
-        case listbox_commands::get_topindex:
-            // Handle get_topindex
-            break;
+		case listbox_commands::error_space:
+		{
+			// Not enough memory to store an item.
+			break;
+		}
+		
+		case listbox_commands::double_click:
+		{
+			// User double - clicked an item.
+			break;
+		}
+
+		case listbox_commands::select_cancel:
+		{
+			// Selection was canceled(multi - selection mode).
+			break;
+		}
+
+		// User selected a new item.
+		case listbox_commands::select_change:
+		{
+			juju_codes code;
+			string selected_text = m_front_lb.get_selection(&code);
+			output_code(code);
+			MessageBox(nullptr, selected_text.c_str(), ROS("Selected Item"), MB_OK);
+			break;
+		}
+
+		case listbox_commands::lost_focus:
+		{
+			// List box lost focus.
+			break;
+		}
+
+		case listbox_commands::gained_focus:
+		{
+			// List box gained focus.
+			break;
+		}
+
     default:
         // Handle unknown command
         break;
-    }
+    } // end of switch(lc)
+}
+
+void juju::ui::lb_label_action(label_commands command)
+{
+	switch (command) {
+		case label_commands::clicked:
+		{
+			MessageBox(nullptr, ROS("LABEL CLICKED"), ROS("clicked."), MB_OK);
+			break;
+		}
+
+		case label_commands::dbl_clicked:
+		{
+			break;
+		}
+
+		case label_commands::disable:
+		{
+			break;
+		}
+
+		case label_commands::enable:
+		{
+			break;
+		}
+
+		default:
+			break;
+
+	} // end of switch(command)
 }

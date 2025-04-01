@@ -1,5 +1,5 @@
 
-// For the logger window scrolling
+// For the logger window and scrolling
 #define LINE_HEIGHT 16
 #define PAGE_LINES 25
 #define LOGGER_LINES 1000

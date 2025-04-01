@@ -31,3 +31,4 @@
 #define MAIN_INCLUDE_PATH						main_hpp
 #define UI_INCLUDE_PATH							ui_hpp
 #define LISTBOX_INCLUDE_PATH					listbox_hpp
+#define LABEL_INCLUDE_PATH						label_hpp

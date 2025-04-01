@@ -12,6 +12,10 @@
 #include DEPENDENCIES_INCLUDE_PATH
 #include BUTTON_INCLUDE_PATH
 #include LISTBOX_INCLUDE_PATH
+#include LABEL_INCLUDE_PATH
+
+
+
 
 namespace juju {
 	enum class window_ids {
@@ -22,7 +26,8 @@ namespace juju {
 		help,
 		b_front,
 		b_refresh,
-		lb_box
+		lb_box,
+		label
 	};
 
 	
@@ -40,6 +45,9 @@ namespace juju {
 
 		listbox m_front_lb;
 		void front_listbox_action(listbox_commands lc);
+
+		label m_lb_label;
+		void lb_label_action(label_commands command);
 	protected:
 
 /*
@@ -125,6 +133,44 @@ namespace juju {
 			nullptr,
 			nullptr
 		};
+
+
+/*
+		
+			struct label_description {
+			string class_name = ROS("STATIC");
+			string window_name = ROS("LABEL_TEXT");
+			DWORD style_flags = 0;
+			std::size_t xPos = 0;
+			std::size_t yPos = 0;
+			std::size_t width = 0;
+			std::size_t height = 0;
+			HWND window = nullptr;
+			HMENU menu = nullptr;
+			HINSTANCE hinst = GetModuleHandle(NULL);
+			LPVOID lpParam = nullptr;
+			std::function<void(label_commands)> label_caller = nullptr;
+		};
+		
+*/
+		label_description m_lb_label_d{
+			ROS("STATIC"),
+			ROS("Program List"),
+			WS_CHILD | WS_VISIBLE | SS_CENTER | SS_NOTIFY,
+			10,
+			10,
+			100,
+			20,
+			nullptr,
+			nullptr,
+			nullptr,
+			nullptr,
+			nullptr
+		};
+
+
+
+
 
 	};
 }

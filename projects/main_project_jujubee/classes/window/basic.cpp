@@ -180,15 +180,14 @@ LRESULT juju::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
 
                 case static_cast<int>(window_ids::lb_box):
                 {
-                    switch (HIWORD(wParam)) {
-                        case LBN_SELCHANGE: {
-                            juju_codes code;
-                            string selected_text = m_main_ui.m_front_lb.get_selection(&code);
-                            output_code(code);
-                            MessageBox(nullptr, selected_text.c_str(), ROS("Selected Item"), MB_OK);
-                            break;
-                        }
-                    }
+                    m_main_ui.m_front_lb.action(static_cast<listbox_commands>(HIWORD(wParam)));
+                    break;
+                }
+
+                case static_cast<int>(window_ids::label):
+                {
+                    m_main_ui.m_lb_label.action(static_cast<label_commands>(HIWORD(wParam)));
+                    break;
                 }
 
                 default:

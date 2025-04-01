@@ -8,6 +8,11 @@ juju::listbox::listbox(listbox_description lbd)
 
 }
 
+void juju::listbox::action(listbox_commands command) {
+	m_command = command;
+	m_lbd.listbox_caller(command);
+}
+
 juju::juju_codes juju::listbox::create() {
 	
 	/*
