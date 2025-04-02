@@ -13,11 +13,26 @@
 #include BUTTON_INCLUDE_PATH
 #include LISTBOX_INCLUDE_PATH
 #include LABEL_INCLUDE_PATH
-
+#include TEXTBOX_INCLUDE_PATH
 
 
 
 namespace juju {
+	enum class ui_positions : std::size_t {
+		// label
+		label_x = 10,
+		label_y = 10,
+		label_w = 100,
+		label_h = 20,
+
+		// front listbox
+		front_lb_x = 10,
+		front_lb_y = 30,
+		front_lb_w = 400,
+		front_lb_h = 400
+	};
+
+
 	enum class window_ids {
 		console = 0,
 		file,
@@ -123,10 +138,10 @@ namespace juju {
 			ROS("LISTBOX"),
 			ROS("LB_front"),
 			WS_CHILD | WS_VISIBLE | WS_BORDER | LBS_STANDARD,
-			10,
-			20,
-			200,
-			200,
+			static_cast<std::size_t>(ui_positions::front_lb_x),
+			static_cast<std::size_t>(ui_positions::front_lb_y),
+			static_cast<std::size_t>(ui_positions::front_lb_w),
+			static_cast<std::size_t>(ui_positions::front_lb_h),
 			nullptr,
 			nullptr,
 			nullptr,
@@ -157,10 +172,10 @@ namespace juju {
 			ROS("STATIC"),
 			ROS("Program List"),
 			WS_CHILD | WS_VISIBLE | SS_CENTER | SS_NOTIFY,
-			10,
-			10,
-			100,
-			20,
+			static_cast<std::size_t>(ui_positions::label_x),
+			static_cast<std::size_t>(ui_positions::label_y),
+			static_cast<std::size_t>(ui_positions::label_w),
+			static_cast<std::size_t>(ui_positions::label_h),
 			nullptr,
 			nullptr,
 			nullptr,

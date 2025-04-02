@@ -32,3 +32,4 @@
 #define UI_INCLUDE_PATH							ui_hpp
 #define LISTBOX_INCLUDE_PATH					listbox_hpp
 #define LABEL_INCLUDE_PATH						label_hpp
+#define TEXTBOX_INCLUDE_PATH					textbox_hpp
