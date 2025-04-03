@@ -15,6 +15,7 @@
 #include ERROR_INCLUDE_PATH
 #include SCROLL_INCLUDE_PATH
 
+
 namespace juju {
 	class window_logger : starter{
 	public:

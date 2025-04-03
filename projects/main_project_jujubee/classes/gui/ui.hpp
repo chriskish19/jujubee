@@ -1,7 +1,7 @@
 /***********************************************
+* File: ui.hpp
 *
-*
-*
+* Purpose: handle user interface in jujubee
 *
 *
 *
@@ -29,7 +29,19 @@ namespace juju {
 		front_lb_x = 10,
 		front_lb_y = 30,
 		front_lb_w = 400,
-		front_lb_h = 400
+		front_lb_h = 400,
+
+		// refresh button
+		refresh_b_x = 10,
+		refresh_b_y = 420,
+		refresh_b_w = 100,
+		refresh_b_h = 50,
+
+		// launch button
+		launch_b_x = 310,
+		launch_b_y = 420,
+		launch_b_w = 100,
+		launch_b_h = 50
 	};
 
 
@@ -52,7 +64,7 @@ namespace juju {
 		ui(HWND window,HMENU menu,HINSTANCE hinst,LPVOID lp);
 		
 
-		button m_front_b;
+		button m_launch_b;
 		void front_button_action(button_state bs);
 
 		button m_refresh_b;
@@ -83,14 +95,14 @@ namespace juju {
 	};
 
 */
-		juju::button_description m_front_bd{
+		juju::button_description m_launch_bd{
 			ROS("BUTTON"),
-			ROS("#num1"),
+			ROS("Launch"),
 			BS_PUSHBUTTON | WS_VISIBLE | WS_CHILD,
-			500,
-			50,
-			100,
-			100,
+			static_cast<std::size_t>(ui_positions::launch_b_x),
+			static_cast<std::size_t>(ui_positions::launch_b_y),
+			static_cast<std::size_t>(ui_positions::launch_b_w),
+			static_cast<std::size_t>(ui_positions::launch_b_h),
 			nullptr,
 			nullptr,
 			nullptr,
@@ -102,10 +114,10 @@ namespace juju {
 			ROS("BUTTON"),
 			ROS("Refresh"),
 			BS_PUSHBUTTON | WS_VISIBLE | WS_CHILD,
-			10,
-			400,
-			100,
-			50,
+			static_cast<std::size_t>(ui_positions::refresh_b_x),
+			static_cast<std::size_t>(ui_positions::refresh_b_y),
+			static_cast<std::size_t>(ui_positions::refresh_b_w),
+			static_cast<std::size_t>(ui_positions::refresh_b_h),
 			nullptr,
 			nullptr,
 			nullptr,

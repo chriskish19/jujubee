@@ -1,7 +1,7 @@
 /***********************************************
+* File: label.hpp
 *
-*
-*
+* Purpose: handle labels in a win32 window.
 *
 *
 *

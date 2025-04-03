@@ -1,7 +1,7 @@
 /***********************************************
+* File: button.hpp
 *
-*
-*
+* Purpose: handle buttons in win32 window.
 *
 *
 *

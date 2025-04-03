@@ -5,16 +5,16 @@ juju::ui::ui(HWND window, HMENU menu, HINSTANCE hinst, LPVOID lp)
 {
 
     // front button setup
-    m_front_bd.window = window;
-    m_front_bd.menu = (HMENU)window_ids::b_front;
-    m_front_bd.hinst = hinst;
-    m_front_bd.lpParam = lp;
-    m_front_bd.button_caller = [this](button_state bs) {
+    m_launch_bd.window = window;
+    m_launch_bd.menu = (HMENU)window_ids::b_front;
+    m_launch_bd.hinst = hinst;
+    m_launch_bd.lpParam = lp;
+    m_launch_bd.button_caller = [this](button_state bs) {
         this->front_button_action(bs);
         };
 
-    m_front_b = button(m_front_bd);
-    m_front_b.create();
+    m_launch_b = button(m_launch_bd);
+    m_launch_b.create();
 
     // refresh button setup
     m_refresh_bd.window = window;

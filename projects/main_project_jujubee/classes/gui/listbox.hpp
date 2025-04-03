@@ -1,7 +1,7 @@
 /***********************************************
+* File: listbox.hpp
 *
-*
-*
+* Purpose: handle listboxes in a win32 window.
 *
 *
 *

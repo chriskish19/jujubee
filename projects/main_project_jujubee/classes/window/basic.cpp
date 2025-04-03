@@ -48,18 +48,11 @@ LRESULT juju::starter::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARA
 
 juju::juju_codes juju::starter::window_settings()
 {
-    // the class might already be registered
-    if (m_class_atm.load() > 0) {
-        return juju_codes::class_already_registered;
-    }
-
     m_wc.lpfnWndProc = WindowProc;
     m_wc.hInstance = m_hinst;
     m_wc.lpszClassName = m_c_name.c_str();
 
-    m_class_atm.store(RegisterClass(&m_wc));
-
-    if (m_class_atm.load() == FALSE) {
+    if (RegisterClass(&m_wc) == FALSE) {
         return juju_codes::failed_to_register_class;
     }
     return juju_codes::success;
@@ -109,7 +102,7 @@ juju::juju_codes juju::starter::message_pump()
 
 juju::window::window()
 {
-    
+    m_c_name = ROS("MAIN WINDOW");
 }
 
 void juju::window::go()
@@ -117,7 +110,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = window_settings();
-        if (code not_eq juju_codes::success) {
+        if (code != juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
@@ -126,7 +119,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = create_window();
-        if (code not_eq juju_codes::success) {
+        if (code != juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
@@ -138,7 +131,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = add_menu(m_window_handle);
-        if (code not_eq juju_codes::success) {
+        if (code != juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
@@ -147,7 +140,7 @@ void juju::window::go()
     {
         juju_codes code;
         code = message_pump();
-        if (code not_eq juju_codes::success) {
+        if (code != juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
@@ -168,7 +161,7 @@ LRESULT juju::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
 
                 case static_cast<int>(window_ids::b_front):
                 {
-                    m_main_ui.m_front_b.action(button_state::pressed);
+                    m_main_ui.m_launch_b.action(button_state::pressed);
                     break;
                 }
 

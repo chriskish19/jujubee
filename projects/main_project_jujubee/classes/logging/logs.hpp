@@ -22,7 +22,7 @@ namespace juju {
 		// sets m_message to message
 		void set_message(const string& message);
 
-
+		// get a copy of m_message
 		string get_message_copy();
 
 		// if message is large and since copying is expensive
@@ -44,6 +44,7 @@ namespace juju {
 
 		// reserve memory for the length of m_message
 		const std::size_t m_message_length_reserved;
+
 
 		std::mutex m_message_mtx;
 	};

@@ -1,7 +1,7 @@
 /***********************************************
+* File: textbox.hpp
 *
-*
-*
+* Purpose: handle textbox's in a win32 window.
 *
 *
 *

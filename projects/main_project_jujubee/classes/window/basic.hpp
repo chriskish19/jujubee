@@ -46,9 +46,6 @@ namespace juju {
 		juju_codes window_settings() override;
 		juju_codes create_window() override;
 		juju_codes message_pump() override;
-
-		// return value from registering windows class
-		inline static std::atomic<ATOM> m_class_atm = 0;
 	};
 
 	class window :starter{
@@ -56,6 +53,7 @@ namespace juju {
 		window();
 
 		void go();
+
 	protected:
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 
