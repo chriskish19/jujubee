@@ -102,6 +102,7 @@ juju::juju_codes juju::starter::message_pump()
 
 juju::window::window()
 {
+    m_title = ROS("jujubee Main Window");
     m_c_name = ROS("MAIN WINDOW");
 }
 
@@ -127,16 +128,16 @@ void juju::window::go()
 
     m_main_ui = ui(m_window_handle, nullptr, m_hinst, nullptr);
     m_main_ui.m_front_lb.add_string(ROS("Test string"));
-
+    
     {
         juju_codes code;
-        code = add_menu(m_window_handle);
+        code = add_dynamic_menu(m_window_handle);
         if (code != juju_codes::success) {
             code_description code_obj = match_code(code);
             throw jujubee_error(code_obj);
         }
     }
-    
+
     {
         juju_codes code;
         code = message_pump();
@@ -221,7 +222,7 @@ LRESULT juju::window::ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM
     return starter::ThisWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-juju::juju_codes juju::window::add_menu(HWND window_handle)
+juju::juju_codes juju::window::add_dynamic_menu(HWND window_handle)
 {
     HMENU hMenu = CreateMenu();
     if (hMenu == nullptr) {

@@ -7,6 +7,7 @@
 *
 ************************************************/
 
+// header files
 #define STL_PRIVATE_INCLUDE_PATH				stl_includes_hpp
 #define STL_INCLUDE_PATH						stl_hpp
 #define SETTINGS_INCLUDE_PATH					settings_hpp
@@ -32,4 +33,8 @@
 #define UI_INCLUDE_PATH							ui_hpp
 #define LISTBOX_INCLUDE_PATH					listbox_hpp
 #define LABEL_INCLUDE_PATH						label_hpp
-#define TEXTBOX_INCLUDE_PATH					textbox_hpp		
+#define TEXTBOX_INCLUDE_PATH					textbox_hpp	
+
+// resource files
+#define JUJUBEE_ICON_PATH						jujubee_logo_bmp
+#define RESOURCE_INCLUDE_PATH					resource_h

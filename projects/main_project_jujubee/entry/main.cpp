@@ -48,10 +48,30 @@ int WINAPI wWinMain(
     _In_ int nShowCmd
 ) {
     juju_global::start_logger();
+    {
+        juju::juju_codes code = juju_global::log_system_message(ROS("juju system logger initialized..."));
+        juju::output_code(code);
+    }
 
 
     juju::window* main_window = new juju::window;
-    main_window->go();
+    {
+        juju::juju_codes code = juju_global::log_system_message(ROS("main window created."));
+        juju::output_code(code);
+    }
+
+
+    try {
+        juju::juju_codes code = juju_global::log_system_message(ROS("main window go..."));
+        juju::output_code(code);
+        main_window->go();
+    }
+    catch (juju::jujubee_error e) {
+        juju::juju_codes code = juju_global::log_system_message(e.full_message());
+        juju::output_code(code);
+        e.vs_output_full_message();
+    }
+    
 
     if (main_window != nullptr) {
         delete main_window;

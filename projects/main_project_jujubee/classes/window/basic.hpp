@@ -15,7 +15,6 @@
 #include UI_INCLUDE_PATH
 
 
-
 namespace juju {
 	// abstract class
 	class foundation {
@@ -57,7 +56,7 @@ namespace juju {
 	protected:
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 
-		juju_codes add_menu(HWND window_handle);
+		juju_codes add_dynamic_menu(HWND window_handle);
 
 		ui m_main_ui;
 	};

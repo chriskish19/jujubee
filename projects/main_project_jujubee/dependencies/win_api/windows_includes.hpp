@@ -11,6 +11,7 @@
 
 // main windows header
 #include <windows.h>
+#include <commctrl.h>
 
 #ifdef min
 #undef min

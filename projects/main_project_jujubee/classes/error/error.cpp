@@ -400,88 +400,192 @@ void juju::output_code(juju_codes code)
 {
 
     switch (code) {
-    case juju_codes::success:
-    {
-        return;
-    }
+        case juju_codes::success:
+        {
+            return;
+        }
 
-    case juju_codes::null_pointer:
-    {
-        output_window(null_pointer_description);
-        break;
-    }
+        case juju_codes::null_pointer:
+        {
+            output_window(null_pointer_description);
+            break;
+        }
 
-    case juju_codes::window_problem:
-    {
-        output_window(window_problem_description);
-        break;
-    }
+        case juju_codes::window_problem:
+        {
+            output_window(window_problem_description);
+            break;
+        }
 
-    case juju_codes::exception_thrown:
-    {
-        output_window(exception_thrown_description);
-        break;
-    }
+        case juju_codes::exception_thrown:
+        {
+            output_window(exception_thrown_description);
+            break;
+        }
 
-    case juju_codes::empty_file:
-    {
-        output_window(empty_file_description);
-        break;
-    }
+        case juju_codes::empty_file:
+        {
+            output_window(empty_file_description);
+            break;
+        }
 
-    case juju_codes::string_length_too_long:
-    {
-        output_window(string_length_too_long_description);
-        break;
-    }
+        case juju_codes::string_length_too_long:
+        {
+            output_window(string_length_too_long_description);
+            break;
+        }
 
-    case juju_codes::to_wide_string_failed:
-    {
-        output_window(to_wide_string_failed_description);
-        break;
-    }
+        case juju_codes::to_wide_string_failed:
+        {
+            output_window(to_wide_string_failed_description);
+            break;
+        }
 
 
-    case juju_codes::to_narrow_string_failed:
-    {
-        output_window(to_narrow_string_failed_description);
-        break;
-    }
+        case juju_codes::to_narrow_string_failed:
+        {
+            output_window(to_narrow_string_failed_description);
+            break;
+        }
 
-    case juju_codes::class_already_registered:
-    {
-        output_window(class_already_registered_description);
-        break;
-    }
+        case juju_codes::class_already_registered:
+        {
+            output_window(class_already_registered_description);
+            break;
+        }
 
-    case juju_codes::failed_to_register_class:
-    {
-        output_window(failed_to_register_class_description);
-        break;
-    }
+        case juju_codes::failed_to_register_class:
+        {
+            output_window(failed_to_register_class_description);
+            break;
+        }
 
-    case juju_codes::hwnd_fail:
-    {
-        output_window(hwnd_fail_description);
-        break;
-    }
+        case juju_codes::hwnd_fail:
+        {
+            output_window(hwnd_fail_description);
+            break;
+        }
 
-    case juju_codes::show_window_fail:
-    {
-        output_window(show_window_fail_description);
-        break;
-    }
+        case juju_codes::show_window_fail:
+        {
+            output_window(show_window_fail_description);
+            break;
+        }
 
-    case juju_codes::menu_fail:
-    {
-        output_window(menu_fail_description);
-        break;
-    }
+        case juju_codes::menu_fail:
+        {
+            output_window(menu_fail_description);
+            break;
+        }
 
-    default:
-        output_window(unknown_description);
+        case juju_codes::getclientrect_fail:
+        {
+            output_window(getclientrect_fail_description);
+            break;
+        }
+
+        case juju_codes::lb_add_string_fail:
+        {
+            output_window(lb_add_string_fail_description);
+            break;
+        }
+
+        case juju_codes::lb_get_selection_fail:
+        {
+            output_window(lb_get_selection_fail_description);
+            break;
+        }
+
+        case juju_codes::file_open_fail:
+        {
+            output_window(file_open_fail_description);
+            break;
+        }
+
+        case juju_codes::std_error_convert_unknown:
+        {
+            output_window(std_error_convert_unknown_description);
+            break;
+        }
+
+        case juju_codes::permission_denied:
+        {
+            output_window(permission_denied_description);
+            break;
+        }
+
+        case juju_codes::no_such_file_or_directory:
+        {
+            output_window(no_such_file_or_directory_description);
+            break;
+        }
+
+        case juju_codes::file_exists:
+        {
+            output_window(file_exists_description);
+            break;
+        }
+
+        case juju_codes::is_a_directory:
+        {
+            output_window(is_a_directory_description);
+            break;
+        }
+
+        case juju_codes::not_a_directory:
+        {
+            output_window(not_a_directory_description);
+            break;
+        }
+
+        case juju_codes::device_or_resource_busy:
+        {
+            output_window(device_or_resource_busy_description);
+            break;
+        }
+
+        case juju_codes::invalid_argument:
+        {
+            output_window(invalid_argument_description);
+            break;
+        }
+
+        case juju_codes::directory_not_empty:
+        {
+            output_window(directory_not_empty_description);
+            break;
+        }
+
+        case juju_codes::file_too_large:
+        {
+            output_window(file_too_large_description);
+            break;
+        }
+
+        case juju_codes::io_error:
+        {
+            output_window(io_error_description);
+            break;
+        }
+
+        case juju_codes::no_space_on_device:
+        {
+            output_window(no_space_on_device_description);
+            break;
+        }
+
+        case juju_codes::too_many_files_open:
+        {
+            output_window(too_many_files_open_description);
+            break;
+        }
+
+        default:
+            output_window(unknown_description);
     }
 }
+
+
 
 void juju::output_window(string message, string title)
 {

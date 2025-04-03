@@ -30,12 +30,26 @@ if(NOT (is_using_MSVC_compiler OR is_using_CLANG_compiler OR is_using_GCC_compil
 endif()
 
 
-add_definitions(-DUNICODE -D_UNICODE)
+
+# switch for unicode
+set(UNICODE_DEFINED ON)
+
+if(${UNICODE_DEFINED})
+    # define UNICODE to the compiler
+    add_compile_definitions(-DUNICODE -D_UNICODE)
+endif()
+
+
+
+
 file(GLOB_RECURSE cpp_source_files "../projects/main_project_jujubee/*.cpp")
 file(GLOB_RECURSE cpp_header_files "../projects/main_project_jujubee/*.hpp")
+file(GLOB_RECURSE juju_resources "../projects/main_project_jujubee/resources/*")
+
 include_directories("../projects")
 
-
+# creates macros for each hpp file include path
+# very handy for name changes and file moves
 foreach(HEADER_FILE ${cpp_header_files})
     get_filename_component(FILE_NAME ${HEADER_FILE} NAME_WE)
     set(FILE_NAME_HPP "${FILE_NAME}_hpp")
@@ -47,6 +61,32 @@ foreach(HEADER_FILE ${cpp_header_files})
     if(${FILE_NAME} STREQUAL "names")
         add_compile_definitions(-DNAMES_INCLUDE=${FILE_NAME_HPP})
     endif()
+endforeach()
+
+# creates macros for each resource (full file path)
+foreach(JUJU_RESOURCE ${juju_resources})
+    # gets the name from JUJU_RESOURCE, JUJU_RESOURCE is the full path from C:
+    get_filename_component(FILE_NAME ${JUJU_RESOURCE} NAME_WE)
+    
+    # gets the extension from JUJU_RESOURCE
+    get_filename_component(FILE_EXT ${JUJU_RESOURCE} EXT)
+    
+    if(${UNICODE_DEFINED} AND NOT (${FILE_EXT} STREQUAL ".h" OR ${FILE_EXT} STREQUAL ".hpp"))
+        # full file path in the variable JUJU_RESOURCE_FILE_PATH
+        set(JUJU_RESOURCE_FILE_PATH "L\"${JUJU_RESOURCE}\"")
+    else()
+        # full file path in the variable JUJU_RESOURCE_FILE_PATH
+        set(JUJU_RESOURCE_FILE_PATH "\"${JUJU_RESOURCE}\"")
+    endif()
+
+    # get rid of the dot and replace it with _
+    string(REPLACE "." "_" FILE_EXT ${FILE_EXT})
+
+    # the macro name
+    set(JUJU_RESOURCE_NAME "${FILE_NAME}${FILE_EXT}")
+    
+    # set the macro to the file path
+    add_compile_definitions(-D${JUJU_RESOURCE_NAME}=${JUJU_RESOURCE_FILE_PATH})
 endforeach()
 
 
