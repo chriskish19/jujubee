@@ -34,6 +34,7 @@ namespace juju {
 
 		juju_codes create_window() override;
 		juju_codes message_pump() override;
+		juju_codes window_settings() override;
 
 		LRESULT CALLBACK ThisWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 		

@@ -84,6 +84,12 @@ juju::code_description juju::match_code(juju_codes code)
             return lb_get_selection_fail_code;
         }
 
+        case juju_codes::set_icon_fail:
+        {
+            return set_icon_fail_code;
+        }
+
+        // file errors
         case juju_codes::file_open_fail:
         {
             return file_open_fail_code;

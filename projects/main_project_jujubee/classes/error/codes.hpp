@@ -33,6 +33,7 @@ namespace juju {
 		lb_get_selection_fail,
 		file_open_fail,
 		std_error_convert_unknown,
+		set_icon_fail,
 
 		// file errors (<system_error>)
 		permission_denied,					// No permission to access the file / directory
@@ -69,7 +70,7 @@ namespace juju {
 	inline const character* lb_get_selection_fail_description =		ROS("Failed to get selected string inside listbox.");
 	inline const character* file_open_fail_description =			ROS("F stream failed to open file.");
 	inline const character* std_error_convert_unknown_description = ROS("the function std_error_code_convert() encountered an unknown code");
-
+	inline const character* set_icon_fail_description =				ROS("failed to set icon.");
 
 
 
@@ -117,7 +118,7 @@ namespace juju {
 	inline const code_description lb_get_selection_fail_code		(juju_codes::lb_get_selection_fail, lb_get_selection_fail_description);
 	inline const code_description file_open_fail_code				(juju_codes::file_open_fail, file_open_fail_description);
 	inline const code_description std_error_convert_unknown_code	(juju_codes::std_error_convert_unknown, std_error_convert_unknown_description);
-
+	inline const code_description set_icon_fail_code				(juju_codes::set_icon_fail, set_icon_fail_description);
 
 
 	// file errors

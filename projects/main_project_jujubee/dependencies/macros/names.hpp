@@ -36,5 +36,4 @@
 #define TEXTBOX_INCLUDE_PATH					textbox_hpp	
 
 // resource files
-#define JUJUBEE_ICON_PATH						jujubee_logo_bmp
-#define RESOURCE_INCLUDE_PATH					resource_h
+#define JUJUBEE_ICON_PATH						jujubee_icon_ico

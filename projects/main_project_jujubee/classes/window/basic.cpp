@@ -138,6 +138,17 @@ void juju::window::go()
         }
     }
 
+    
+    {
+        juju_codes code;
+        code = set_icon(m_window_handle, JUJUBEE_ICON_PATH);
+        if (code != juju_codes::success) {
+            code_description code_obj = match_code(code);
+            throw jujubee_error(code_obj);
+        }
+    }
+    
+
     {
         juju_codes code;
         code = message_pump();
@@ -265,4 +276,16 @@ juju::juju_codes juju::window::add_dynamic_menu(HWND window_handle)
     }
 
     return juju_codes::success;
+}
+
+juju::juju_codes juju::window::set_icon(HWND hwnd, const fs::path& icon_path) {
+    HICON hIcon = (HICON)LoadImage(NULL, icon_path.c_str(), IMAGE_ICON, 0 ,0 , LR_LOADFROMFILE | LR_DEFAULTSIZE);
+    
+    // Set taskbar icon
+    SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+    
+    // Set window title bar icon
+    SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+    
+    return juju::juju_codes::success;
 }

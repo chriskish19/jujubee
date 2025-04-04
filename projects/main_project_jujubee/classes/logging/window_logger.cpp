@@ -39,6 +39,20 @@ juju::window_logger::~window_logger() {
     DeleteObject(m_wl_font);
 }
 
+juju::juju_codes juju::window_logger::window_settings() {
+    m_wc.lpfnWndProc = WindowProc;
+    m_wc.hInstance = m_hinst;
+    m_wc.lpszClassName = m_c_name.c_str();
+
+    // my computer icon
+    m_wc.hIcon = ExtractIcon(m_hinst, ROS("shell32.dll"), 15);
+
+    if (RegisterClass(&m_wc) == FALSE) {
+        return juju_codes::failed_to_register_class;
+    }
+    return juju_codes::success;
+}
+
 juju::juju_codes juju::window_logger::create_window() {
     m_window_handle = CreateWindowEx(
         0,                                              // Optional window styles.
