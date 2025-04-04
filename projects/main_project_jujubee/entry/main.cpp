@@ -1,10 +1,53 @@
-#include "main_project_jujubee/dependencies/pch/pch.hpp"
+#include NAMES_INCLUDE
+#include PCH_INCLUDE_PATH
+
+
 
 namespace juju_global {
     juju::window_logger* wl_sys_logger = new juju::window_logger;
 
     std::thread* wl_thread_p = new std::thread;
 
+
+    juju::juju_codes log_system_std_file_exception(const std::filesystem::filesystem_error& e) {
+        try {
+#if WIDE
+            juju::string what = juju_api::to_wide_string(e.what());
+#elif NARROW
+            juju::string what = e.what()
+#endif
+            juju::string p1 = e.path1().c_str();
+            juju::string p2 = e.path2().c_str();
+
+            auto message = std::format(ROS("filesystem error: {} '\n' path1: {} '\n' path2: {}"), what, p1, p2);
+            return wl_sys_logger->send_message(message);
+        }
+        catch (const std::format_error& e) {
+            std::cerr << "std::format error: " << e.what() << std::endl;
+        }
+        catch (const std::bad_alloc& e) {
+            std::cerr << "memory allocation error: " << e.what() << std::endl;
+        }
+        catch (const juju::jujubee_error& e) {
+            e.vs_output_full_message();
+        }
+        return juju::juju_codes::exception_thrown;
+    }
+
+    juju::juju_codes log_system_message(const char* message) {
+#if WIDE
+        try {
+            juju::string wide_message = juju_api::to_wide_string(message);
+            return wl_sys_logger->send_message(wide_message);
+        }
+        catch (const juju::jujubee_error& e) {
+            e.vs_output_full_message();
+        }
+        return juju::juju_codes::exception_thrown;
+#elif NARROW
+        return wl_sys_logger->send_message(message);
+#endif
+    }
 
     juju::juju_codes log_system_message(const juju::string& message) {
        return wl_sys_logger->send_message(message);
@@ -26,10 +69,12 @@ namespace juju_global {
         // clean up
         if (wl_thread_p != nullptr) {
             delete wl_thread_p;
+            wl_thread_p = nullptr;
         }
 
         if (wl_sys_logger != nullptr) {
             delete wl_sys_logger;
+            wl_sys_logger = nullptr;
         }
 
         return juju::juju_codes::success;
@@ -66,7 +111,7 @@ int WINAPI wWinMain(
         juju::output_code(code);
         main_window->go();
     }
-    catch (juju::jujubee_error e) {
+    catch (const juju::jujubee_error& e) {
         juju::juju_codes code = juju_global::log_system_message(e.full_message());
         juju::output_code(code);
         e.vs_output_full_message();
@@ -75,6 +120,7 @@ int WINAPI wWinMain(
 
     if (main_window != nullptr) {
         delete main_window;
+        main_window = nullptr;
     }
     
 

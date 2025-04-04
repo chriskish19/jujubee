@@ -29,16 +29,16 @@ namespace juju {
 	void output_code(juju_codes code);
 	void output_window(string message, string title = ROS("ERROR WINDOW"));
 
-	class jujubee_error : std::exception {
+	class jujubee_error : public std::exception {
 	public:
 		jujubee_error(code_description code, string location = get_location())
 			:m_code(code),m_location(location){ }
 
 		// send message to visual studio output window
-		void vs_output_full_message();
+		void vs_output_full_message() const;
 
 		// returns full string message
-		string full_message();
+		string full_message() const;
 	protected:
 		string m_location;
 		code_description m_code;

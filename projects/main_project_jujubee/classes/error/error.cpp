@@ -3,14 +3,14 @@
 
 
 
-void juju::jujubee_error::vs_output_full_message()
+void juju::jujubee_error::vs_output_full_message() const
 {
 	string output_message = m_code.m_description + ROS("|") + m_location;
 	
 	OutputDebugString(output_message.c_str());
 }
 
-juju::string juju::jujubee_error::full_message()
+juju::string juju::jujubee_error::full_message() const
 {
     return m_code.m_description + ROS("|") + m_location;
 }
