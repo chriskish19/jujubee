@@ -8,8 +8,6 @@ namespace juju_global {
 
     std::thread* wl_thread_p = new std::thread;
 
-    juju::file_logger* fl_sys = new juju::file_logger(ROS("juju_log.txt"), "logs");
-
 
 
     juju::juju_codes log_system_std_exception(const std::exception& e) {
@@ -93,11 +91,6 @@ namespace juju_global {
             wl_sys_logger = nullptr;
         }
 
-        if (fl_sys != nullptr) {
-            delete fl_sys;
-            fl_sys = nullptr;
-        }
-
         return juju::juju_codes::success;
     }
 }
@@ -144,10 +137,14 @@ int WINAPI wWinMain(
         main_window = nullptr;
     }
     
-
+    {
+        juju::juju_codes code = juju_global::log_system_message(ROS("main window closed..."));
+        juju::output_code(code);
+    }
     juju_global::close_logger();
 
     return static_cast<int>(juju::juju_codes::success);
+
 }
 
 

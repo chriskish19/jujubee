@@ -23,9 +23,6 @@ namespace juju_global {
 	// thread for running system global logger window
 	extern std::thread* wl_thread_p;
 
-	// system global file logger
-	extern juju::file_logger* fl_sys;
-
 	// functions for logging messages to the system global logger
 	juju::juju_codes log_system_message(const juju::string& message);
 	juju::juju_codes log_system_message(const char* message);
