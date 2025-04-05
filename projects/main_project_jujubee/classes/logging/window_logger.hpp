@@ -28,6 +28,7 @@ namespace juju {
 		juju_codes wait_until_closed();
 
 		juju_codes send_message(const string& message);
+		string get_latest_message() { return m_logger.get_latest_message(); }
 	protected:
 		std::atomic<bool> m_wait_b = false;
 		std::condition_variable m_wait_cv;

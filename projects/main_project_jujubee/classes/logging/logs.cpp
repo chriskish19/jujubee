@@ -90,7 +90,7 @@ juju::juju_codes juju::base_logger::add_message(const string& message, std::size
 
 juju::juju_codes juju::base_logger::add_message(const string& message)
 {
-
+    std::unique_lock<std::mutex> local_lock(m_logs_vp_mtx);
     try {
         log* lp = m_logs_vp->at(m_log_pos);
         lp->set_message(message);
@@ -122,4 +122,17 @@ juju::juju_codes juju::base_logger::add_message(const string& message)
     }
 
     return juju_codes::success;
+}
+
+juju::string juju::base_logger::get_latest_message() {
+    std::unique_lock<std::mutex> local_lock(m_logs_vp_mtx);
+    try {
+        auto log_p = m_logs_vp->at(m_log_pos);
+        return log_p->get_message_copy();
+    }
+    catch (const std::exception& e) {
+        std::cerr << "exception: " << e.what() << std::endl;
+    }
+    // return empty string if an exception is thrown
+    return {};
 }

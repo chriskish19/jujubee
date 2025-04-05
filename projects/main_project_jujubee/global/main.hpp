@@ -13,6 +13,8 @@
 #include DEPENDENCIES_INCLUDE_PATH
 #include WINDOWLOGGER_INCLUDE_PATH
 #include CODES_INCLUDE_PATH
+#include FILELOGGER_INCLUDE_PATH
+
 
 namespace juju_global {
 	// system global logger window
@@ -21,10 +23,14 @@ namespace juju_global {
 	// thread for running system global logger window
 	extern std::thread* wl_thread_p;
 
+	// system global file logger
+	extern juju::file_logger* fl_sys;
+
 	// functions for logging messages to the system global logger
 	juju::juju_codes log_system_message(const juju::string& message);
 	juju::juju_codes log_system_message(const char* message);
 	juju::juju_codes log_system_std_file_exception(const std::filesystem::filesystem_error& e);
+	juju::juju_codes log_system_std_exception(const std::exception& e);
 
 	// initialization: launches the thread
 	juju::juju_codes start_logger();

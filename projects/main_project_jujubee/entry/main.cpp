@@ -8,6 +8,22 @@ namespace juju_global {
 
     std::thread* wl_thread_p = new std::thread;
 
+    juju::file_logger* fl_sys = new juju::file_logger(ROS("juju_log.txt"), "logs");
+
+
+
+    juju::juju_codes log_system_std_exception(const std::exception& e) {
+#if WIDE
+        juju::string what = juju_api::to_wide_string(e.what());
+#elif NARROW
+        juju::string what = e.what();
+#endif
+        what = ROS("standard exception thrown: ") + what;
+        
+        return wl_sys_logger->send_message(what);
+    }
+
+
 
     juju::juju_codes log_system_std_file_exception(const std::filesystem::filesystem_error& e) {
         try {
@@ -75,6 +91,11 @@ namespace juju_global {
         if (wl_sys_logger != nullptr) {
             delete wl_sys_logger;
             wl_sys_logger = nullptr;
+        }
+
+        if (fl_sys != nullptr) {
+            delete fl_sys;
+            fl_sys = nullptr;
         }
 
         return juju::juju_codes::success;

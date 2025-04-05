@@ -64,6 +64,9 @@ namespace juju {
 		// add message using m_log_pos as the index
 		juju_codes add_message(const string& message);
 
+		// get the latest message added to the logs vec
+		string get_latest_message();
+
 		// get a pointer to the logs vector
 		std::vector<log*>* get_logs_vec_pointer() { return m_logs_vp; }
 	protected:
@@ -80,6 +83,9 @@ namespace juju {
 		// we reserve memory for this vector to the amount of
 		// log messages (m_log_count)
 		std::vector<log*>* m_logs_vp = new std::vector<log*>;
+
+		// prevent concurrent access to m_logs_vp
+		std::mutex m_logs_vp_mtx;
 	};
 }
 
