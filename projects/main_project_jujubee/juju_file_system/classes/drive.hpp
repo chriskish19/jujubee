@@ -29,6 +29,6 @@ namespace juju_file_system {
 		juju::juju_codes remove_file(const file& data);
 	protected:
 		// files
-		std::vector<file>* m_files_v_p = nullptr;
+		std::unordered_set<file>* m_files_v_p = nullptr;
 	};
 }

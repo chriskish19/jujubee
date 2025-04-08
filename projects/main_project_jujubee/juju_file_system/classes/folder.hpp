@@ -13,26 +13,14 @@
 #include PATH_INCLUDE_PATH
 #include CODES_INCLUDE_PATH
 
-
 namespace juju_file_system {
-	
-
-	// virtual file
-	class file {
+	class folder {
 	public:
-		file() = default;
-		file(std::size_t size, const path<string>& p);
-		~file();
 
-		
+
+
 	protected:
-		// juju path
-		path<string> m_file_path;
 
-		// in bytes
-		std::size_t m_file_size;
 
-		// file data
-		std::vector<juju128>* m_file_data_v_p = nullptr;
 	};
 }
