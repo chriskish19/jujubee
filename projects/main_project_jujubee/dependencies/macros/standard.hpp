@@ -7,11 +7,6 @@
 #define CHARACTER_MOVE 25
 
 
-
-
-
-
-
 // for juju file system path
 #define MAX_JFS_PATH 512
 #define JUJU_BYTE 16

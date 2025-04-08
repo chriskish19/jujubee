@@ -11,33 +11,24 @@
 #include NAMES_INCLUDE
 #include DEPENDENCIES_INCLUDE_PATH
 #include CODES_INCLUDE_PATH
-
+#include PATH_INCLUDE_PATH
+#include DRIVE_INCLUDE_PATH
+#include FILE_INCLUDE_PATH
 
 
 namespace juju_file_system {
-	// virtual memory
-	struct juju128 {
-		std::size_t address;
-		std::byte memory[JUJU_BYTE];
-	};
-	
-	// virtual file
-	struct file_description {
-
-	};
 	
 	// virtual drive
-	class drive {
+	class juju_blob {
 	public:
-		drive(std::size_t drive_size, character drive_letter);
+		// size: file count
+		juju_blob(std::size_t size, character letter);
 
-		juju::juju_codes add_file(const file_description& fd);
+		juju::juju_codes add_file(const file& data);
+
+		juju::juju_codes remove_file(const file& data);
 	protected:
-		// raw file data
-		std::vector<juju128>* m_drive_data_v_p = nullptr;
-
-		std::vector<file_description> m_files;
-
-
+		// files
+		std::vector<file>* m_files_v_p = nullptr;
 	};
 }

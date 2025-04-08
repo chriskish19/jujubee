@@ -40,7 +40,7 @@
 #define JFS_UTILITIES_INCLUDE_PATH				jfs_utilities_hpp
 #define DRIVE_INCLUDE_PATH						drive_hpp
 #define PATH_INCLUDE_PATH						path_hpp
-#define VHD_INCLUDE_PATH						vhd_hpp
+#define FILE_INCLUDE_PATH						file_hpp
 
 // juju_api (namespace)
 #define UTILITIES_INCLUDE_PATH					utilities_hpp
