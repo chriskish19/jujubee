@@ -15,7 +15,7 @@
 #include RANDOM_INCLUDE_PATH
 #include WINDOWLOGGER_INCLUDE_PATH
 
-namespace juju {
-	juju_codes test_logging(std::size_t seconds);
-	juju_codes slow_test_logging(std::size_t seconds,std::size_t pause);
+namespace juju_test {
+	juju::juju_codes test_logging(std::size_t seconds);
+	juju::juju_codes slow_test_logging(std::size_t seconds,std::size_t pause);
 }

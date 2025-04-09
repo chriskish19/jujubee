@@ -1,6 +1,67 @@
 #include NAMES_INCLUDE
 #include UTILITIES_INCLUDE_PATH
 
+
+
+
+juju::juju_codes juju_api::log_system_std_exception(const std::exception& e) {
+#if WIDE
+    juju::string what = juju_api::to_wide_string(e.what());
+#elif NARROW
+    juju::string what = e.what();
+#endif
+    what = ROS("standard exception thrown: ") + what;
+
+    return wl_sys_logger->send_message(what);
+}
+
+
+
+juju::juju_codes juju_api::log_system_std_file_exception(const std::filesystem::filesystem_error& e) {
+    try {
+#if WIDE
+        juju::string what = juju_api::to_wide_string(e.what());
+#elif NARROW
+        juju::string what = e.what()
+#endif
+            juju::string p1 = e.path1().c_str();
+        juju::string p2 = e.path2().c_str();
+
+        auto message = std::format(ROS("filesystem error: {} '\n' path1: {} '\n' path2: {}"), what, p1, p2);
+        return wl_sys_logger->send_message(message);
+    }
+    catch (const std::format_error& e) {
+        std::cerr << "std::format error: " << e.what() << std::endl;
+    }
+    catch (const std::bad_alloc& e) {
+        std::cerr << "memory allocation error: " << e.what() << std::endl;
+    }
+    catch (const juju::jujubee_error& e) {
+        e.vs_output_full_message();
+    }
+    return juju::juju_codes::exception_thrown;
+}
+
+juju::juju_codes juju_api::log_system_message(const char* message) {
+#if WIDE
+    try {
+        juju::string wide_message = juju_api::to_wide_string(message);
+        return wl_sys_logger->send_message(wide_message);
+    }
+    catch (const juju::jujubee_error& e) {
+        e.vs_output_full_message();
+    }
+    return juju::juju_codes::exception_thrown;
+#elif NARROW
+    return wl_sys_logger->send_message(message);
+#endif
+}
+
+juju::juju_codes juju_api::log_system_message(const juju::string& message) {
+    return wl_sys_logger->send_message(message);
+}
+
+
 UINT juju_api::get_window_width(HWND window_handle)
 {
     RECT rc = {};

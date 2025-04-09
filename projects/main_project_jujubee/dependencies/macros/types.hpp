@@ -37,6 +37,17 @@ namespace juju_api {
 }
 
 namespace juju_file_system {
+	using string = std::string;
+	using ostringstream = std::wostringstream;
+	using character = char;
+	namespace fs = std::filesystem;		// for less typing
+	using fstream = std::fstream;
+}
+
+namespace jfs = juju_file_system;
+
+
+namespace juju_test {
 	using string = std::wstring;
 	using ostringstream = std::wostringstream;
 	using character = wchar_t;
@@ -46,7 +57,7 @@ namespace juju_file_system {
 	using ofstream = std::wofstream;
 }
 
-namespace jfs = juju_file_system;
+namespace jt = juju_test;
 
 #else
 
@@ -56,8 +67,8 @@ namespace juju {
 	using string = std::string;
 	using ostringstream = std::ostringstream;
 	using character = char;
-	using w32_str_p = LPSTR;			// wchar_t*
-	using w32_str_cp = LPCSTR;			// const wchar_t* (read only)
+	using w32_str_p = LPSTR;			// char*
+	using w32_str_cp = LPCSTR;			// const char* (read only)
 	namespace fs = std::filesystem;		// for less typing
 	using ofstream = std::ofstream;
 }
@@ -66,8 +77,8 @@ namespace juju_api {
 	using string = std::string;
 	using ostringstream = std::ostringstream;
 	using character = char;
-	using w32_str_p = LPSTR;			// wchar_t*
-	using w32_str_cp = LPCSTR;			// const wchar_t* (read only)
+	using w32_str_p = LPSTR;			// char*
+	using w32_str_cp = LPCSTR;			// const char* (read only)
 	namespace fs = std::filesystem;		// for less typing
 	using ofstream = std::ofstream;
 }
@@ -76,12 +87,24 @@ namespace juju_file_system {
 	using string = std::string;
 	using ostringstream = std::ostringstream;
 	using character = char;
-	using w32_str_p = LPSTR;			// wchar_t*
-	using w32_str_cp = LPCSTR;			// const wchar_t* (read only)
 	namespace fs = std::filesystem;		// for less typing
 	using ofstream = std::ofstream;
 }
 
 namespace jfs = juju_file_system;
+
+namespace juju_test {
+	using string = std::string;
+	using ostringstream = std::ostringstream;
+	using character = char;
+	using w32_str_p = LPSTR;			// char*
+	using w32_str_cp = LPCSTR;			// const char* (read only)
+	namespace fs = std::filesystem;		// for less typing
+	using ofstream = std::ofstream;
+}
+
+namespace jt = juju_test;
+
+
 
 #endif

@@ -14,17 +14,15 @@
 
 // common controls library
 #include <commctrl.h>
-#pragma comment(lib,"commctrl.lib")
 
-// vhd library
+// virtual hard disk library
 #include <virtdisk.h>
-#pragma comment(lib, "virtdisk.lib")
 
 // The userenv.h header file is part of the Windows API and provides functions for managing user profiles. 
 // These functions allow applications to load, unload, and query user profiles, 
 // which are essential for accessing user-specific settings and data.
 #include <userenv.h>
-#pragma comment(lib, "userenv.lib")
+
 
 #ifdef min
 #undef min

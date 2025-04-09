@@ -18,7 +18,6 @@
 #define STANDARD_INCLUDE_PATH					standard_hpp
 
 // juju (namespace)
-#define TEST_UTILITIES_INCLUDE_PATH				test_utilities_hpp
 #define CODES_INCLUDE_PATH						codes_hpp
 #define ERROR_INCLUDE_PATH						error_hpp
 #define FILELOGGER_INCLUDE_PATH					file_logger_hpp
@@ -27,7 +26,6 @@
 #define BASIC_INCLUDE_PATH						basic_hpp
 #define EXCEPT_INCLUDE_PATH						juju_except_hpp
 #define SCROLL_INCLUDE_PATH						scroll_hpp
-#define RANDOM_INCLUDE_PATH						random_hpp
 #define BUTTON_INCLUDE_PATH						button_hpp
 #define TASKBAR_INCLUDE_PATH					taskbar_hpp
 #define MAIN_INCLUDE_PATH						main_hpp
@@ -35,6 +33,8 @@
 #define LISTBOX_INCLUDE_PATH					listbox_hpp
 #define LABEL_INCLUDE_PATH						label_hpp
 #define TEXTBOX_INCLUDE_PATH					textbox_hpp	
+#define LCU_INCLUDE_PATH						lcu_hpp
+
 
 // juju_file_system (namespace)
 #define JFS_UTILITIES_INCLUDE_PATH				jfs_utilities_hpp
@@ -46,6 +46,14 @@
 
 // juju_api (namespace)
 #define UTILITIES_INCLUDE_PATH					utilities_hpp
+#define INIT_INCLUDE_PATH						init_hpp
+#define OBJECTS_INCLUDE_PATH					objects_hpp
+
+// juju_test (namespace)
+#define TEST_UTILITIES_INCLUDE_PATH				jt_utilities_hpp
+#define RANDOM_INCLUDE_PATH						random_hpp
+
+
 
 // resource files ( file paths in macro form)
 #define JUJUBEE_ICON_PATH						jujubee_icon_ico

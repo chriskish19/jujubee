@@ -12,7 +12,6 @@
 #include NAMES_INCLUDE
 #include DEPENDENCIES_INCLUDE_PATH
 #include CODES_INCLUDE_PATH
-#include STL_INCLUDE_PATH
 
 
 namespace juju {

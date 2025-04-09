@@ -21,8 +21,7 @@ namespace juju_file_system {
 	// virtual drive
 	class juju_blob {
 	public:
-		// size: file count
-		juju_blob(std::size_t size, character letter);
+		juju_blob(std::size_t size, character letter, const std::filesystem::path& p);
 
 		juju::juju_codes add_file(const file& data);
 
@@ -30,5 +29,17 @@ namespace juju_file_system {
 	protected:
 		// files
 		std::unordered_set<file>* m_files_v_p = nullptr;
+
+
+
+
+
+		const fstream m_fs_juju_blob;
+
+		const std::filesystem::path m_os_path;
+
+		const std::size_t m_blob_size;
+
+		const character m_juju_drive_letter;
 	};
 }

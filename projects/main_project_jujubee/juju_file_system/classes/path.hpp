@@ -48,7 +48,7 @@ namespace juju_file_system {
             m_path_v = std::move(p);
         }
         else {
-            static_assert(always_false<path_type>::value, "Unsupported path type");
+            static_assert(false, "Unsupported path type");
         }
     }
 

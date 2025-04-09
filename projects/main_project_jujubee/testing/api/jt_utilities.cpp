@@ -2,13 +2,13 @@
 #include TEST_UTILITIES_INCLUDE_PATH
 
 
-juju::juju_codes juju::test_logging(std::size_t seconds)
+juju::juju_codes juju_test::test_logging(std::size_t seconds)
 {
     juju::log l(LOGGER_MESSAGE_LENGTH);
     l.set_time();
     std::size_t time_length = l.get_time_length();
     
-    window_logger wl;
+    juju::window_logger wl;
     std::jthread wl_thread(&juju::window_logger::go, &wl);
     wl.wait_until_init();
 
@@ -20,16 +20,16 @@ juju::juju_codes juju::test_logging(std::size_t seconds)
         wl.send_message(message);
     }
 
-    return juju_codes::success;
+    return juju::juju_codes::success;
 }
 
-juju::juju_codes juju::slow_test_logging(std::size_t seconds, std::size_t pause)
+juju::juju_codes juju_test::slow_test_logging(std::size_t seconds, std::size_t pause)
 {
     juju::log l(LOGGER_MESSAGE_LENGTH);
     l.set_time();
     std::size_t time_length = l.get_time_length();
 
-    window_logger wl;
+    juju::window_logger wl;
     std::jthread wl_thread(&juju::window_logger::go, &wl);
     wl.wait_until_init();
 
@@ -42,5 +42,5 @@ juju::juju_codes juju::slow_test_logging(std::size_t seconds, std::size_t pause)
 
         std::this_thread::sleep_for(std::chrono::seconds(pause));
     }
-    return juju_codes::success;
+    return juju::juju_codes::success;
 }

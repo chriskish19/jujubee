@@ -31,8 +31,5 @@ namespace juju_file_system {
 
 		// in bytes
 		std::size_t m_file_size;
-
-		// file data
-		std::vector<juju128>* m_file_data_v_p = nullptr;
 	};
 }

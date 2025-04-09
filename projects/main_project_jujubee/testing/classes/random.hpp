@@ -11,7 +11,7 @@
 #include NAMES_INCLUDE
 #include DEPENDENCIES_INCLUDE_PATH
 
-namespace juju {
+namespace juju_test {
 	class random {
 	public:
 		random(std::size_t rlow, std::size_t rhigh);
