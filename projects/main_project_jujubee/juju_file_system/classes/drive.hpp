@@ -22,6 +22,8 @@ namespace juju_file_system {
 	class juju_blob {
 	public:
 		juju_blob(std::size_t size, character letter, const std::filesystem::path& p);
+		
+		~juju_blob();
 
 		juju::juju_codes add_file(const file& data);
 

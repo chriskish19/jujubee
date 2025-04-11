@@ -9,11 +9,13 @@ juju_file_system::juju_blob::juju_blob(std::size_t size, character letter, const
 	m_os_path(p),
 	m_fs_juju_blob(fstream(m_os_path, std::ios::binary))
 {
-
+	
 }
 
 juju::juju_codes juju_file_system::juju_blob::add_file(const juju_file_system::file& data) {
-	return juju::juju_codes::success;
+    
+
+    return juju::juju_codes::success;
 }
 
 juju::juju_codes jfs::juju_blob::remove_file(const jfs::file& data) {
