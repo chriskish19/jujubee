@@ -2,7 +2,9 @@
 * File: codes.hpp
 * 
 * Purpose: defines all codes (error codes and messages)
-*
+* 
+* Project: jujubee
+* 
 ************************************************/
 
 #pragma once

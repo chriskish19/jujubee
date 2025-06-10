@@ -3,7 +3,7 @@
 *
 * Purpose: handle file paths in jujubee
 *
-*
+* Project: jujubee
 *
 ************************************************/
 
@@ -12,66 +12,18 @@
 #include DEPENDENCIES_INCLUDE_PATH
 
 namespace juju_file_system {
-    template<typename type>
-    concept path_type = std::is_same_v<type, jfs::string> or
-        std::is_same_v<type, character*> or
-        std::is_same_v<type, std::vector<character>>;
-
-    template<typename path_type>
+    // virtual path
     class path {
     public:
         path() = default;
-        path(path_type p);
+        path(const string& p);
 
+        bool operator==(const path& other_p) const {
+            return this->m_path == other_p.m_path;
+        }
 
-        // formatted for windows paths
-        // (C:\\folder\\file.txt)
-        path windows();
-
-        // (C:/folder/file.txt)
-        path linux();
+        string get_raw_path() const { return m_path; }
     protected:
-        std::vector<character> m_path_v = {};
+        string m_path;
     };
-
-
-    template<typename path_type>
-    inline path<path_type>::path(path_type p)
-    {
-        if constexpr (std::is_same_v<path_type, jfs::string>) {
-            m_path_v.assign(p.begin(), p.end());
-        }
-        else if constexpr (std::is_same_v<path_type, character*>) {
-            m_path_v.assign(p, p + std::char_traits<character>::length(p));
-        }
-        else if constexpr (std::is_same_v<path_type, std::vector<character>>) {
-            m_path_v = std::move(p);
-        }
-        else {
-            static_assert(false, "Unsupported path type");
-        }
-    }
-
-    template<typename path_type>
-    inline path<path_type> path<path_type>::windows()
-    {
-        for (auto& ch : m_path_v) {
-            if (ch == '/') {
-                ch = '\\';
-            }
-        }
-        return *this;
-    }
-
-
-    template<typename path_type>
-    inline path<path_type> path<path_type>::linux()
-    {
-        for (auto& ch : m_path_v) {
-            if (ch == '\\') {
-                ch = '/';
-            }
-        }
-        return *this;
-    }
 }

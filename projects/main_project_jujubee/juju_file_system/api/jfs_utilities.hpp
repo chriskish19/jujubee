@@ -1,9 +1,10 @@
 /***********************************************
-*
-*
-*
-*
-*
+* 
+* File: jfs_utilities.hpp
+* 
+* Purpose: utilites for the file system
+* 
+* Project: jujubee
 *
 ************************************************/
 

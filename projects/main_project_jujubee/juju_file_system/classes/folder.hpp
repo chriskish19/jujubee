@@ -19,11 +19,8 @@ namespace juju_file_system {
 	public:
 		folder() = default;
 
-
 	protected:
-		path<string> m_p;
-
+		path m_p;
 		string m_name;
-
 	};
 }
