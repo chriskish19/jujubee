@@ -31,6 +31,8 @@ namespace juju_file_system {
 		juju::juju_codes remove(const file& data);
 
 	protected:
+		juju::juju_codes write_to_blob(const file& data);
+
 		// files
 		std::unordered_set<file,file_hash,file_equal>* m_files_v_p = nullptr;
 

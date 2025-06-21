@@ -60,5 +60,13 @@ juju::juju_codes juju_file_system::juju_blob::remove(const file& data)
 	return juju::juju_codes::success;
 }
 
+juju::juju_codes juju_file_system::juju_blob::write_to_blob(const file& data)
+{
+	
+	
+	
+	return juju::juju_codes();
+}
+
 
 
