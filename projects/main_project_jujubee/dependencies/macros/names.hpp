@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: names.hpp
 *
 * Purpose: makes for easy file name changes and file moves
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

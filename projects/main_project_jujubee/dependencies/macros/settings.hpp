@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: settings.hpp
 *
 * Purpose: Manage macro settings thorughout jujubee
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

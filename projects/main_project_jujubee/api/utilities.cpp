@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: utilities.cpp
+*
+* Purpose: utilities.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include UTILITIES_INCLUDE_PATH
 

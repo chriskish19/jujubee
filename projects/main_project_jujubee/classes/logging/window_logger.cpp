@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: window_logger.cpp
+*
+* Purpose: window_logger.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include WINDOWLOGGER_INCLUDE_PATH
 

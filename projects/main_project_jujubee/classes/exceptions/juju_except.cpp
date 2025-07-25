@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: juju_except.cpp
+*
+* Purpose: juju_except.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include EXCEPT_INCLUDE_PATH
 

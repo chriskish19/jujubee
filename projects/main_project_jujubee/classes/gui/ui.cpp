@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: ui.cpp
+*
+* Purpose: ui.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include UI_INCLUDE_PATH
 

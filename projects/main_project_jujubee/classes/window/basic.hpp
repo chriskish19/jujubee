@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: basic.hpp
 *
 * Purpose: basic win32 window creation
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

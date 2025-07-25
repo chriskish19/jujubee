@@ -1,3 +1,15 @@
+/***********************************************
+*
+* File: init.cpp
+*
+* Purpose: init.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
+
 #include NAMES_INCLUDE
 #include INIT_INCLUDE_PATH
 

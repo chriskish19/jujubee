@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: button.cpp
+*
+* Purpose: defines a gui button in win32
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include BUTTON_INCLUDE_PATH
 

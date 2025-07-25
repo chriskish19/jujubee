@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: label.cpp
+*
+* Purpose: label.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include LABEL_INCLUDE_PATH
 

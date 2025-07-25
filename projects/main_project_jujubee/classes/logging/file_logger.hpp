@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: file_logger.hpp
 *
 * Purpose: save system logs to a file
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

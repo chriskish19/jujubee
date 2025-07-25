@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: scroll.hpp
 *
 * Purpose: handle scrolling in a win32 window
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

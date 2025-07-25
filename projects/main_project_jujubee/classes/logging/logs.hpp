@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: logs.hpp
 * 
 * Purpose: handles base system logging
 * 
-* 
+* Project: jujubee
 * 
 ************************************************/
 

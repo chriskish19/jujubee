@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: scroll.cpp
+*
+* Purpose: scroll.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include SCROLL_INCLUDE_PATH
 

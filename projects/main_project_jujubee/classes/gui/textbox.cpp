@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: textbox.cpp
+*
+* Purpose: textbox.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include TEXTBOX_INCLUDE_PATH
 

@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: listbox.cpp
+*
+* Purpose: listbox.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include LISTBOX_INCLUDE_PATH
 

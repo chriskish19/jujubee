@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: objects.cpp
+*
+* Purpose: objects.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include OBJECTS_INCLUDE_PATH
 

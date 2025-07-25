@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: pch.hpp
+*
+* Purpose: pre-compiled-header
+*
+* Project: jujubee
+*
+************************************************/
+
 #ifndef PCH_HPP_GUARD
 #define PCH_HPP_GUARD
 

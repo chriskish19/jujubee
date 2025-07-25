@@ -1,9 +1,13 @@
 /***********************************************
+* 
 * File: utilities.hpp
 * 
 * Purpose: provide helper functions for jujubee
 *
 * Used: everywhere in jujubee project
+* 
+* Project: jujubee
+* 
 ************************************************/
 
 #pragma once

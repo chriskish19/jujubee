@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: standard.hpp
+*
+* Purpose: define number macros
+*
+* Project: jujubee
+*
+************************************************/
+
 
 // for the logger window and scrolling
 #define LINE_HEIGHT 16

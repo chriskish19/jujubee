@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: ui.hpp
 *
 * Purpose: handle user interface in jujubee
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

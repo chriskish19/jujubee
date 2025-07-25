@@ -1,9 +1,10 @@
 /***********************************************
+* 
 * File: types.hpp
 *
 * Purpose: Manage types throughout jujubee.
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

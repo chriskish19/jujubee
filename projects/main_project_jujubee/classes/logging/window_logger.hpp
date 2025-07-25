@@ -1,9 +1,12 @@
 /***********************************************
+* 
 * File: window_logger.hpp
 *
-* Purpose: provide a window for viewing system logs from jujubee
+* Purpose: provide a window for viewing system 
+*		   logs from jujubee
 *
-*
+* Project: jujubee
+* 
 ************************************************/
  
 #pragma once

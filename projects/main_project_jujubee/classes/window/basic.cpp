@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: basic.cpp
+*
+* Purpose: basic win32 window creation
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include BASIC_INCLUDE_PATH
 

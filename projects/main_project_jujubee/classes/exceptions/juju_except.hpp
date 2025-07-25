@@ -1,9 +1,10 @@
 /***********************************************
+*
 * File: juju_except.hpp
 *
-* Purpose: exception handling layer
+* Purpose: handle exceptions
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

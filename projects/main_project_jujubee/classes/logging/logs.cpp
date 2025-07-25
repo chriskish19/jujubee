@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: logs.cpp
+*
+* Purpose: logs.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include LOGS_INCLUDE_PATH
 

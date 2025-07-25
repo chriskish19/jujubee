@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: file_logger.cpp
+*
+* Purpose: file_logger.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include FILELOGGER_INCLUDE_PATH
 
