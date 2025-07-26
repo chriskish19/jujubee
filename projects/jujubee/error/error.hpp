@@ -6,6 +6,8 @@
 * Info:	this should only be dependant on codes.hpp and can be used throughout jujubee 
 *		to handle errors
 * 
+* Project: jujubee
+* 
 ************************************************/
 
 #pragma once

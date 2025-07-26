@@ -42,11 +42,18 @@ endif()
 
 
 
-file(GLOB_RECURSE cpp_source_files "../projects/main_project_jujubee/*.cpp")
-file(GLOB_RECURSE cpp_header_files "../projects/main_project_jujubee/*.hpp")
-file(GLOB_RECURSE juju_resources "../projects/main_project_jujubee/resources/*")
+file(GLOB_RECURSE cpp_source_files "../projects/jujubee/*.cpp")
+file(GLOB_RECURSE cpp_header_files "../projects/jujubee/*.hpp")
+file(GLOB_RECURSE juju_resources "../projects/jujubee/resources/*")
 
 include_directories("../projects")
+
+# NOTE: need to install dokan lib first
+# https://github.com/dokan-dev/dokany/releases
+set(DOKAN_ROOT "C:/Program Files/Dokan/DokanLibrary-2.3.0")
+include_directories("${DOKAN_ROOT}/include")
+link_directories("${DOKAN_ROOT}/lib")
+
 
 # creates macros for each hpp file include path
 # very handy for name changes and file moves
@@ -99,9 +106,11 @@ if(DEFINED BUILD_TYPE)
     if(BUILD_TYPE STREQUAL "Debug")
         add_definitions(-DDEBUG)
         add_executable(${jujubee} WIN32 ${cpp_source_files} ${cpp_header_files})
+        target_link_libraries(${jujubee} PUBLIC dokan2)
     elseif(BUILD_TYPE STREQUAL "Release")
         add_definitions(-DRELEASE)
         add_executable(${jujubee} WIN32 ${cpp_source_files} ${cpp_header_files})
+        target_link_libraries(${jujubee} PUBLIC dokan2)
     elseif(BUILD_TYPE STREQUAL "Test")
         # I use the terminal window for logging when running tests
     
@@ -121,6 +130,7 @@ if(DEFINED BUILD_TYPE)
             shell32
             ole32
             oleaut32
+            dokan2
         )
     endif()
 endif()

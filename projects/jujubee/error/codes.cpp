@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: codes.cpp
+*
+* Purpose: codes.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include CODES_INCLUDE_PATH
 

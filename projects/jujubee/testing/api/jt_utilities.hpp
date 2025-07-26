@@ -3,7 +3,7 @@
 *
 * Purpose: test jujubee's code base
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

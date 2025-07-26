@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: jt_utilities.cpp
+*
+* Purpose: jt_utilities.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include TEST_UTILITIES_INCLUDE_PATH
 

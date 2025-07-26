@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: error.cpp
+*
+* Purpose: error.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include ERROR_INCLUDE_PATH
 

@@ -2,9 +2,9 @@
 * File: main.hpp
 *
 * Purpose: handle global objects and functions for 
-		   the global objects.
+*	       the global objects.
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

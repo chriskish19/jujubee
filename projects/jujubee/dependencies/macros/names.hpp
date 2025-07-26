@@ -42,7 +42,7 @@
 #define DRIVE_INCLUDE_PATH						drive_hpp
 #define PATH_INCLUDE_PATH						path_hpp
 #define FILE_INCLUDE_PATH						file_hpp
-#define JUJU128_INCLUDE_PATH					juju128_hpp
+#define JUJU_MEMORY_INCLUDE_PATH				juju_memory_hpp
 #define FOLDER_INCLUDE_PATH						folder_hpp
 
 // juju_api (namespace)

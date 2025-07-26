@@ -3,7 +3,7 @@
 *
 * Purpose: generate random data, mostly for testing
 *
-*
+* Project: jujubee
 *
 ************************************************/
 

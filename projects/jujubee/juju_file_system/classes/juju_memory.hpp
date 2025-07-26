@@ -16,7 +16,7 @@
 
 namespace juju_file_system {
 	// virtual memory
-	class juju128 {
+	class memory {
 	public:
 
 
@@ -25,6 +25,6 @@ namespace juju_file_system {
 		std::size_t address;
 
 		// 128bits
-		std::byte memory[JUJU_BYTE];
+		std::byte m_data[JUJU_BYTE];
 	};
 }

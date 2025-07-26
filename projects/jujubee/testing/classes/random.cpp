@@ -1,3 +1,13 @@
+/***********************************************
+*
+* File: random.cpp
+*
+* Purpose: random.hpp definitions
+*
+* Project: jujubee
+*
+************************************************/
+
 #include NAMES_INCLUDE
 #include RANDOM_INCLUDE_PATH
 

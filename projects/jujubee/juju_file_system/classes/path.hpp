@@ -1,4 +1,5 @@
 /***********************************************
+* 
 * File: path.hpp
 *
 * Purpose: handle file paths in jujubee

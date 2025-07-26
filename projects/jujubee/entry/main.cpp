@@ -1,3 +1,14 @@
+/***********************************************
+*
+* File: main.cpp
+*
+* Purpose: main entry point
+*
+* Project: jujubee
+*
+************************************************/
+
+
 #include NAMES_INCLUDE
 #include PCH_INCLUDE_PATH
 
