@@ -39,11 +39,7 @@
 
 // juju_file_system (namespace)
 #define JFS_UTILITIES_INCLUDE_PATH				jfs_utilities_hpp
-#define DRIVE_INCLUDE_PATH						drive_hpp
-#define PATH_INCLUDE_PATH						path_hpp
-#define FILE_INCLUDE_PATH						file_hpp
-#define JUJU_MEMORY_INCLUDE_PATH				juju_memory_hpp
-#define FOLDER_INCLUDE_PATH						folder_hpp
+#define JFS_OBJECTS_INCLUDE_PATH				jfs_objects_hpp
 
 // juju_api (namespace)
 #define UTILITIES_INCLUDE_PATH					utilities_hpp

@@ -38,9 +38,9 @@ namespace juju_api {
 }
 
 namespace juju_file_system {
-	using string = std::string;
+	using string = std::wstring;
 	using ostringstream = std::wostringstream;
-	using character = char;
+	using character = wchar_t;
 	namespace fs = std::filesystem;		// for less typing
 	using fstream = std::fstream;
 }

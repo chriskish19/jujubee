@@ -8,12 +8,8 @@
 *
 ************************************************/
 
-
-
 #include NAMES_INCLUDE
 #include INIT_INCLUDE_PATH
-
-
 
 juju::juju_codes juju_api::start_jfs() {
     jfs_drive_letters = new std::unordered_set<jfs::character>;

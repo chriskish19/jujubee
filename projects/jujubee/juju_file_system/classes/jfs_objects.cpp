@@ -1,18 +1,12 @@
 /***********************************************
 *
-* File: path.cpp
+* File: jfs_objects.cpp
 *
-* Purpose: virtual file paths in jujubee
+* Purpose: jfs_objects.hpp definitions
 *
 * Project: jujubee
 *
 ************************************************/
 
 #include NAMES_INCLUDE
-#include PATH_INCLUDE_PATH
-
-juju_file_system::path::path(const string& p)
-	:m_path(p)
-{
-
-}
+#include JFS_OBJECTS_INCLUDE_PATH
